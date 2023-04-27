@@ -1,0 +1,783 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "http://www.ipa.fraunhofer.de/kinematics",
+  "title" : "JSON type schema for 'kinematics'",
+  "type" : "object",
+  "properties" : {
+    "actuatortransmission" : {
+      "$id" : "#actuatortransmission",
+      "title" : "ActuatorTransmission",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//ActuatorTransmission"
+        },
+        "mechanicalReduction" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "mechanicalReduction", "name" ]
+    },
+    "axis" : {
+      "$id" : "#axis",
+      "title" : "Axis",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Axis"
+        },
+        "xyz" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "box" : {
+      "$id" : "#box",
+      "title" : "Box",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Box"
+        },
+        "size" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "calibration" : {
+      "$id" : "#calibration",
+      "title" : "Calibration",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Calibration"
+        },
+        "falling" : {
+          "type" : "number"
+        },
+        "referencePosition" : {
+          "type" : "number"
+        },
+        "rising" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "child" : {
+      "$id" : "#child",
+      "title" : "Child",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Child"
+        },
+        "link" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "link" ]
+    },
+    "collision" : {
+      "$id" : "#collision",
+      "title" : "Collision",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Collision"
+        },
+        "origin" : {
+          "$ref" : "#/properties/pose"
+        },
+        "geometry" : {
+          "$ref" : "#/properties/geometry"
+        },
+        "verbose" : {
+          "$ref" : "#/properties/verbose"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "geometry" ]
+    },
+    "color" : {
+      "$id" : "#color",
+      "title" : "Color",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Color"
+        },
+        "rgba" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "cylinder" : {
+      "$id" : "#cylinder",
+      "title" : "Cylinder",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Cylinder"
+        },
+        "length" : {
+          "type" : "number"
+        },
+        "radius" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "length", "radius" ]
+    },
+    "documentroot" : {
+      "$id" : "#documentroot",
+      "title" : "DocumentRoot",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//DocumentRoot"
+        },
+        "mixed" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "xMLNSPrefixMap" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "xSISchemaLocation" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "robot" : {
+          "$ref" : "#/properties/robot"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "dynamics" : {
+      "$id" : "#dynamics",
+      "title" : "Dynamics",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Dynamics"
+        },
+        "damping" : {
+          "type" : "number"
+        },
+        "friction" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "gapjointtransmission" : {
+      "$id" : "#gapjointtransmission",
+      "title" : "GapJointTransmission",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//GapJointTransmission"
+        },
+        "a" : {
+          "type" : "number"
+        },
+        "b" : {
+          "type" : "number"
+        },
+        "gearRatio" : {
+          "type" : "number"
+        },
+        "h" : {
+          "type" : "number"
+        },
+        "l0" : {
+          "type" : "number"
+        },
+        "mechanicalReduction" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "phi0" : {
+          "type" : "number"
+        },
+        "r" : {
+          "type" : "number"
+        },
+        "screwReduction" : {
+          "type" : "number"
+        },
+        "t0" : {
+          "type" : "number"
+        },
+        "theta0" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "a", "b", "gearRatio", "h", "l0", "mechanicalReduction", "name", "phi0", "r", "screwReduction", "t0", "theta0" ]
+    },
+    "geometry" : {
+      "$id" : "#geometry",
+      "title" : "Geometry",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Geometry"
+        },
+        "box" : {
+          "$ref" : "#/properties/box"
+        },
+        "cylinder" : {
+          "$ref" : "#/properties/cylinder"
+        },
+        "sphere" : {
+          "$ref" : "#/properties/sphere"
+        },
+        "mesh" : {
+          "$ref" : "#/properties/mesh"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "inertia" : {
+      "$id" : "#inertia",
+      "title" : "Inertia",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Inertia"
+        },
+        "ixx" : {
+          "type" : "number"
+        },
+        "ixy" : {
+          "type" : "number"
+        },
+        "ixz" : {
+          "type" : "number"
+        },
+        "iyy" : {
+          "type" : "number"
+        },
+        "iyz" : {
+          "type" : "number"
+        },
+        "izz" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "inertial" : {
+      "$id" : "#inertial",
+      "title" : "Inertial",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Inertial"
+        },
+        "origin" : {
+          "$ref" : "#/properties/pose"
+        },
+        "mass" : {
+          "$ref" : "#/properties/mass"
+        },
+        "inertia" : {
+          "$ref" : "#/properties/inertia"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "joint" : {
+      "$id" : "#joint",
+      "title" : "Joint",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Joint"
+        },
+        "origin" : {
+          "$ref" : "#/properties/pose"
+        },
+        "parent" : {
+          "$ref" : "#/properties/parent"
+        },
+        "child" : {
+          "$ref" : "#/properties/child"
+        },
+        "axis" : {
+          "$ref" : "#/properties/axis"
+        },
+        "calibration" : {
+          "$ref" : "#/properties/calibration"
+        },
+        "dynamics" : {
+          "$ref" : "#/properties/dynamics"
+        },
+        "limit" : {
+          "$ref" : "#/properties/limit"
+        },
+        "safetyController" : {
+          "$ref" : "#/properties/safetycontroller"
+        },
+        "mimic" : {
+          "$ref" : "#/properties/mimic"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "parent", "child", "name", "type" ]
+    },
+    "limit" : {
+      "$id" : "#limit",
+      "title" : "Limit",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Limit"
+        },
+        "effort" : {
+          "type" : "number"
+        },
+        "lower" : {
+          "type" : "number"
+        },
+        "upper" : {
+          "type" : "number"
+        },
+        "velocity" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "link" : {
+      "$id" : "#link",
+      "title" : "Link",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Link"
+        },
+        "inertial" : {
+          "$ref" : "#/properties/inertial"
+        },
+        "visual" : {
+          "$ref" : "#/properties/visual"
+        },
+        "collision" : {
+          "$ref" : "#/properties/collision"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "name" ]
+    },
+    "mass" : {
+      "$id" : "#mass",
+      "title" : "Mass",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Mass"
+        },
+        "value" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "material" : {
+      "$id" : "#material",
+      "title" : "Material",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Material"
+        },
+        "color" : {
+          "$ref" : "#/properties/color"
+        },
+        "texture" : {
+          "$ref" : "#/properties/texture"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "materialglobal" : {
+      "$id" : "#materialglobal",
+      "title" : "MaterialGlobal",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//MaterialGlobal"
+        },
+        "color" : {
+          "$ref" : "#/properties/color"
+        },
+        "texture" : {
+          "$ref" : "#/properties/texture"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "name" ]
+    },
+    "mesh" : {
+      "$id" : "#mesh",
+      "title" : "Mesh",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Mesh"
+        },
+        "filename" : {
+          "type" : "string"
+        },
+        "scale" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "filename" ]
+    },
+    "mimic" : {
+      "$id" : "#mimic",
+      "title" : "Mimic",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Mimic"
+        },
+        "joint" : {
+          "type" : "string"
+        },
+        "multiplier" : {
+          "type" : "number"
+        },
+        "offset" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "joint" ]
+    },
+    "name" : {
+      "$id" : "#name",
+      "title" : "Name",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Name"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "parent" : {
+      "$id" : "#parent",
+      "title" : "Parent",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Parent"
+        },
+        "link" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "link" ]
+    },
+    "passivejointtransmission" : {
+      "$id" : "#passivejointtransmission",
+      "title" : "PassiveJointTransmission",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//PassiveJointTransmission"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "name" ]
+    },
+    "pose" : {
+      "$id" : "#pose",
+      "title" : "Pose",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Pose"
+        },
+        "rpy" : {
+          "type" : "string"
+        },
+        "xyz" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "robot" : {
+      "$id" : "#robot",
+      "title" : "Robot",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Robot"
+        },
+        "joint" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/joint"
+          }
+        },
+        "link" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/link"
+          }
+        },
+        "material" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/materialglobal"
+          }
+        },
+        "transmission" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/transmission"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "name" ]
+    },
+    "safetycontroller" : {
+      "$id" : "#safetycontroller",
+      "title" : "SafetyController",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//SafetyController"
+        },
+        "kPosition" : {
+          "type" : "number"
+        },
+        "kVelocity" : {
+          "type" : "number"
+        },
+        "softLowerLimit" : {
+          "type" : "number"
+        },
+        "softUpperLimit" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "kVelocity" ]
+    },
+    "sphere" : {
+      "$id" : "#sphere",
+      "title" : "Sphere",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Sphere"
+        },
+        "radius" : {
+          "type" : "number"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "radius" ]
+    },
+    "texture" : {
+      "$id" : "#texture",
+      "title" : "Texture",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Texture"
+        },
+        "filename" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "transmission" : {
+      "$id" : "#transmission",
+      "title" : "Transmission",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Transmission"
+        },
+        "leftActuator" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/actuatortransmission"
+          }
+        },
+        "rightActuator" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/actuatortransmission"
+          }
+        },
+        "flexJoint" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/actuatortransmission"
+          }
+        },
+        "rollJoint" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/actuatortransmission"
+          }
+        },
+        "gapJoint" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/gapjointtransmission"
+          }
+        },
+        "passiveJoint" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/passivejointtransmission"
+          }
+        },
+        "useSimulatedGripperJoint" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/usesimulatedgripperjointtype"
+          }
+        },
+        "mechanicalReduction" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number"
+          }
+        },
+        "actuator" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/name"
+          }
+        },
+        "joint" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/properties/name"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "name", "type" ]
+    },
+    "usesimulatedgripperjointtype" : {
+      "$id" : "#usesimulatedgripperjointtype",
+      "title" : "UseSimulatedGripperJointType",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//UseSimulatedGripperJointType"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "verbose" : {
+      "$id" : "#verbose",
+      "title" : "Verbose",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Verbose"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "visual" : {
+      "$id" : "#visual",
+      "title" : "Visual",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Visual"
+        },
+        "origin" : {
+          "$ref" : "#/properties/pose"
+        },
+        "geometry" : {
+          "$ref" : "#/properties/geometry"
+        },
+        "material" : {
+          "$ref" : "#/properties/material"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "geometry" ]
+    }
+  }
+}
