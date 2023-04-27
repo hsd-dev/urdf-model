@@ -16,7 +16,6 @@ install(DIRECTORY resources DESTINATION share/${PROJECT_NAME})
 ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
-  scripts/xacro_parser.py
   scripts/kinematics_parser.py
   DESTINATION lib/${PROJECT_NAME}
 )
