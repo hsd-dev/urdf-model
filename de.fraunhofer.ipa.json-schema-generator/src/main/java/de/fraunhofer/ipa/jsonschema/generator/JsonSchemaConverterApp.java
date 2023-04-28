@@ -5,13 +5,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import org.eclipse.emf.ecore.EPackage;
-
 import com.fasterxml.jackson.databind.JsonNode;
 
-import kinematics.KinematicsPackage;
-
 import org.apache.commons.cli.*;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
 public class JsonSchemaConverterApp {
 
@@ -21,6 +23,13 @@ public class JsonSchemaConverterApp {
 
 	private static void buildProgramOptions() {
 		options = new Options();
+
+		Option ecore = Option.builder("e").longOpt("ecore")
+				.argName("ecore_file")
+				.hasArg()
+				.required(true)
+				.desc("set ecore file path from which Json schema is to be generated").build();
+		options.addOption(ecore);
 
 		Option output = Option.builder("o").longOpt("output")
 				.argName("output")
@@ -54,9 +63,13 @@ public class JsonSchemaConverterApp {
 		CommandLine cmd;
 		buildProgramOptions();
 
+		String ecore = null;
 		String filename = null;
 		try {
 			cmd = parser.parse(options, args);
+			if (cmd.hasOption("e")) {
+				ecore = cmd.getOptionValue("ecore");
+			}
 			if (cmd.hasOption("o")) {
 				filename = cmd.getOptionValue("output");
 			}
@@ -66,10 +79,15 @@ public class JsonSchemaConverterApp {
 			System.exit(0);
 		}
 
-		DefaultJsonSchemaConverter jsonSchemaCreator = new DefaultJsonSchemaConverter();
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore",
+				new EcoreResourceFactoryImpl());
+		URI uri = URI.createFileURI(ecore);
+		Resource resource = resourceSet.getResource(uri, true);
+		EObject object = resource.getContents().get(0);
 
-		EPackage ePackage = KinematicsPackage.eINSTANCE;
-		final JsonNode jsonSchema = jsonSchemaCreator.from(ePackage);
+		DefaultJsonSchemaConverter jsonSchemaCreator = new DefaultJsonSchemaConverter();
+		final JsonNode jsonSchema = jsonSchemaCreator.from(object);
 
 		writeToFile(filename, jsonSchema.toPrettyString());
 	}
