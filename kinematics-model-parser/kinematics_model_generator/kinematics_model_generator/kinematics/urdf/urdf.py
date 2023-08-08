@@ -1,17 +1,18 @@
-"""Definition of meta model 'kinematics'."""
+"""Definition of meta model 'urdf'."""
 from functools import partial
 import pyecore.ecore as Ecore
 from pyecore.ecore import *
 
 
-name = 'kinematics'
-nsURI = 'http://www.ipa.fraunhofer.de/kinematics'
-nsPrefix = 'kinematics'
+name = 'urdf'
+nsURI = 'http://www.ipa.fraunhofer.de/urdf'
+nsPrefix = 'urdf'
 
 eClass = EPackage(name=name, nsURI=nsURI, nsPrefix=nsPrefix)
 
 eClassifiers = {}
 getEClassifier = partial(Ecore.getEClassifier, searchspace=eClassifiers)
+JointType = EEnum('JointType', literals=[])
 
 
 class ActuatorTransmission(EObject, metaclass=MetaEClass):
@@ -141,8 +142,8 @@ class Color(EObject, metaclass=MetaEClass):
 
 class Cylinder(EObject, metaclass=MetaEClass):
 
-    length = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True)
-    radius = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True)
+    length = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
+    radius = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
 
     def __init__(self, *, length=None, radius=None):
         # if kwargs:
@@ -155,40 +156,6 @@ class Cylinder(EObject, metaclass=MetaEClass):
 
         if radius is not None:
             self.radius = radius
-
-
-class DerivedRobot(EDerivedCollection):
-    pass
-
-
-class DocumentRoot(EObject, metaclass=MetaEClass):
-
-    mixed = EAttribute(eType=EFeatureMapEntry, unique=False,
-                       derived=False, changeable=True, upper=-1)
-    xMLNSPrefixMap = EReference(ordered=True, unique=True, containment=True,
-                                derived=False, upper=-1, transient=True)
-    xSISchemaLocation = EReference(ordered=True, unique=True,
-                                   containment=True, derived=False, upper=-1, transient=True)
-    robot = EReference(ordered=True, unique=True, containment=True, derived=True,
-                       upper=-1, transient=True, derived_class=DerivedRobot)
-
-    def __init__(self, *, mixed=None, xMLNSPrefixMap=None, xSISchemaLocation=None, robot=None):
-        # if kwargs:
-        #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
-
-        super().__init__()
-
-        if mixed:
-            self.mixed.extend(mixed)
-
-        if xMLNSPrefixMap:
-            self.xMLNSPrefixMap.extend(xMLNSPrefixMap)
-
-        if xSISchemaLocation:
-            self.xSISchemaLocation.extend(xSISchemaLocation)
-
-        if robot:
-            self.robot.extend(robot)
 
 
 class Dynamics(EObject, metaclass=MetaEClass):
@@ -297,12 +264,12 @@ class Geometry(EObject, metaclass=MetaEClass):
 
 class Inertia(EObject, metaclass=MetaEClass):
 
-    ixx = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
-    ixy = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
-    ixz = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
-    iyy = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
-    iyz = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
-    izz = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
+    ixx = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
+    ixy = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
+    ixz = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
+    iyy = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
+    iyz = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
+    izz = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
 
     def __init__(self, *, ixx=None, ixy=None, ixz=None, iyy=None, iyz=None, izz=None):
         # if kwargs:
@@ -407,14 +374,14 @@ class Joint(EObject, metaclass=MetaEClass):
 
 class Limit(EObject, metaclass=MetaEClass):
 
-    effort = EAttribute(eType=EDouble, unique=True, derived=False,
-                        changeable=True, default_value=0.0)
-    lower = EAttribute(eType=EDouble, unique=True, derived=False,
-                       changeable=True, default_value=0.0)
-    upper = EAttribute(eType=EDouble, unique=True, derived=False,
-                       changeable=True, default_value=0.0)
-    velocity = EAttribute(eType=EDouble, unique=True, derived=False,
-                          changeable=True, default_value=0.0)
+    effort = EAttribute(eType=EString, unique=True, derived=False,
+                        changeable=True, default_value='0')
+    lower = EAttribute(eType=EString, unique=True, derived=False,
+                       changeable=True, default_value='0')
+    upper = EAttribute(eType=EString, unique=True, derived=False,
+                       changeable=True, default_value='0')
+    velocity = EAttribute(eType=EString, unique=True, derived=False,
+                          changeable=True, default_value='0')
 
     def __init__(self, *, effort=None, lower=None, upper=None, velocity=None):
         # if kwargs:
@@ -467,8 +434,8 @@ class Link(EObject, metaclass=MetaEClass):
 
 class Mass(EObject, metaclass=MetaEClass):
 
-    value = EAttribute(eType=EDouble, unique=True, derived=False,
-                       changeable=True, default_value=0.0)
+    value = EAttribute(eType=EString, unique=True, derived=False,
+                       changeable=True, default_value='0')
 
     def __init__(self, *, value=None):
         # if kwargs:
@@ -611,10 +578,10 @@ class PassiveJointTransmission(EObject, metaclass=MetaEClass):
 
 class Pose(EObject, metaclass=MetaEClass):
 
-    rpy = EAttribute(eType=EString, unique=True, derived=False,
-                     changeable=True, default_value='0 0 0')
-    xyz = EAttribute(eType=EString, unique=True, derived=False,
-                     changeable=True, default_value='0 0 0')
+    rpy = EAttribute(eType=EDouble, unique=False, derived=False,
+                     changeable=True, upper=-1, default_value=0.0)
+    xyz = EAttribute(eType=EDouble, unique=False, derived=False,
+                     changeable=True, upper=-1, default_value=0.0)
 
     def __init__(self, *, rpy=None, xyz=None):
         # if kwargs:
@@ -622,11 +589,11 @@ class Pose(EObject, metaclass=MetaEClass):
 
         super().__init__()
 
-        if rpy is not None:
-            self.rpy = rpy
+        if rpy:
+            self.rpy.extend(rpy)
 
-        if xyz is not None:
-            self.xyz = xyz
+        if xyz:
+            self.xyz.extend(xyz)
 
 
 class Robot(EObject, metaclass=MetaEClass):
@@ -634,14 +601,10 @@ class Robot(EObject, metaclass=MetaEClass):
     name = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     version = EAttribute(eType=EString, unique=True, derived=False,
                          changeable=True, default_value='1.0')
-    joint = EReference(ordered=True, unique=True, containment=True,
-                       derived=False, upper=-1, transient=True)
-    link = EReference(ordered=True, unique=True, containment=True,
-                      derived=False, upper=-1, transient=True)
-    material = EReference(ordered=True, unique=True, containment=True,
-                          derived=False, upper=-1, transient=True)
-    transmission = EReference(ordered=True, unique=True, containment=True,
-                              derived=False, upper=-1, transient=True)
+    joint = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
+    link = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
+    material = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
+    transmission = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
 
     def __init__(self, *, joint=None, link=None, material=None, transmission=None, name=None, version=None):
         # if kwargs:
@@ -872,3 +835,12 @@ class Visual(EObject, metaclass=MetaEClass):
 
         if material is not None:
             self.material = material
+
+
+class Block(EObject, metaclass=MetaEClass):
+
+    def __init__(self):
+        # if kwargs:
+        #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
+
+        super().__init__()
