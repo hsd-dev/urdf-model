@@ -39,7 +39,7 @@ import sys
 import xml.dom.minidom
 
 from copy import deepcopy
-from xacro.cli import process_args
+from kinematics_model_generator.cli import process_args
 from xacro.color import error, message, warning
 from xacro.xmlutils import opt_attrs, reqd_attrs, first_child_element, \
     next_sibling_element, replace_node
