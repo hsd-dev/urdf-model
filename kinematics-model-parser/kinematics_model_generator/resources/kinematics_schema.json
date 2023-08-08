@@ -1,7 +1,7 @@
 {
   "$schema" : "http://json-schema.org/draft-07/schema#",
-  "$id" : "http://www.ipa.fraunhofer.de/kinematics",
-  "title" : "JSON type schema for 'kinematics'",
+  "$id" : "http://www.ipa.fraunhofer.de/urdf",
+  "title" : "JSON type schema for 'urdf'",
   "type" : "object",
   "properties" : {
     "actuatortransmission" : {
@@ -10,7 +10,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//ActuatorTransmission"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//ActuatorTransmission"
         },
         "mechanicalReduction" : {
           "type" : "number"
@@ -28,7 +28,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Axis"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Axis"
         },
         "xyz" : {
           "type" : "string"
@@ -42,7 +42,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Box"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Box"
         },
         "size" : {
           "type" : "string"
@@ -56,7 +56,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Calibration"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Calibration"
         },
         "falling" : {
           "type" : "number"
@@ -76,7 +76,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Child"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Child"
         },
         "link" : {
           "type" : "string"
@@ -91,7 +91,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Collision"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Collision"
         },
         "origin" : {
           "$ref" : "#/properties/pose"
@@ -115,7 +115,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Color"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Color"
         },
         "rgba" : {
           "type" : "string"
@@ -129,49 +129,17 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Cylinder"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Cylinder"
         },
         "length" : {
-          "type" : "number"
+          "type" : "string"
         },
         "radius" : {
-          "type" : "number"
+          "type" : "string"
         }
       },
       "additionalProperties" : false,
       "required" : [ "length", "radius" ]
-    },
-    "documentroot" : {
-      "$id" : "#documentroot",
-      "title" : "DocumentRoot",
-      "type" : "object",
-      "properties" : {
-        "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//DocumentRoot"
-        },
-        "mixed" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "xMLNSPrefixMap" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "string"
-          }
-        },
-        "xSISchemaLocation" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "string"
-          }
-        },
-        "robot" : {
-          "$ref" : "#/properties/robot"
-        }
-      },
-      "additionalProperties" : false
     },
     "dynamics" : {
       "$id" : "#dynamics",
@@ -179,7 +147,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Dynamics"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Dynamics"
         },
         "damping" : {
           "type" : "number"
@@ -196,7 +164,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//GapJointTransmission"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//GapJointTransmission"
         },
         "a" : {
           "type" : "number"
@@ -244,7 +212,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Geometry"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Geometry"
         },
         "box" : {
           "$ref" : "#/properties/box"
@@ -267,25 +235,25 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Inertia"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Inertia"
         },
         "ixx" : {
-          "type" : "number"
+          "type" : "string"
         },
         "ixy" : {
-          "type" : "number"
+          "type" : "string"
         },
         "ixz" : {
-          "type" : "number"
+          "type" : "string"
         },
         "iyy" : {
-          "type" : "number"
+          "type" : "string"
         },
         "iyz" : {
-          "type" : "number"
+          "type" : "string"
         },
         "izz" : {
-          "type" : "number"
+          "type" : "string"
         }
       },
       "additionalProperties" : false
@@ -296,7 +264,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Inertial"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Inertial"
         },
         "origin" : {
           "$ref" : "#/properties/pose"
@@ -316,7 +284,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Joint"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Joint"
         },
         "origin" : {
           "$ref" : "#/properties/pose"
@@ -355,25 +323,29 @@
       "additionalProperties" : false,
       "required" : [ "parent", "child", "name", "type" ]
     },
+    "jointtype" : {
+      "type" : "string",
+      "enum" : [ ]
+    },
     "limit" : {
       "$id" : "#limit",
       "title" : "Limit",
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Limit"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Limit"
         },
         "effort" : {
-          "type" : "number"
+          "type" : "string"
         },
         "lower" : {
-          "type" : "number"
+          "type" : "string"
         },
         "upper" : {
-          "type" : "number"
+          "type" : "string"
         },
         "velocity" : {
-          "type" : "number"
+          "type" : "string"
         }
       },
       "additionalProperties" : false
@@ -384,7 +356,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Link"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Link"
         },
         "inertial" : {
           "$ref" : "#/properties/inertial"
@@ -411,10 +383,10 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Mass"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Mass"
         },
         "value" : {
-          "type" : "number"
+          "type" : "string"
         }
       },
       "additionalProperties" : false
@@ -425,7 +397,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Material"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Material"
         },
         "color" : {
           "$ref" : "#/properties/color"
@@ -445,7 +417,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//MaterialGlobal"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//MaterialGlobal"
         },
         "color" : {
           "$ref" : "#/properties/color"
@@ -466,7 +438,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Mesh"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Mesh"
         },
         "filename" : {
           "type" : "string"
@@ -484,7 +456,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Mimic"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Mimic"
         },
         "joint" : {
           "type" : "string"
@@ -505,7 +477,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Name"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Name"
         },
         "name" : {
           "type" : "string"
@@ -519,7 +491,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Parent"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Parent"
         },
         "link" : {
           "type" : "string"
@@ -534,7 +506,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//PassiveJointTransmission"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//PassiveJointTransmission"
         },
         "name" : {
           "type" : "string"
@@ -549,13 +521,19 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Pose"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Pose"
         },
         "rpy" : {
-          "type" : "string"
+          "type" : "array",
+          "items" : {
+            "type" : "number"
+          }
         },
         "xyz" : {
-          "type" : "string"
+          "type" : "array",
+          "items" : {
+            "type" : "number"
+          }
         }
       },
       "additionalProperties" : false
@@ -566,7 +544,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Robot"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Robot"
         },
         "joint" : {
           "type" : "array",
@@ -608,7 +586,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//SafetyController"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//SafetyController"
         },
         "kPosition" : {
           "type" : "number"
@@ -632,7 +610,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Sphere"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Sphere"
         },
         "radius" : {
           "type" : "number"
@@ -647,7 +625,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Texture"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Texture"
         },
         "filename" : {
           "type" : "string"
@@ -661,7 +639,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Transmission"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Transmission"
         },
         "leftActuator" : {
           "type" : "array",
@@ -739,7 +717,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//UseSimulatedGripperJointType"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//UseSimulatedGripperJointType"
         }
       },
       "additionalProperties" : false
@@ -750,7 +728,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Verbose"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Verbose"
         },
         "value" : {
           "type" : "string"
@@ -764,7 +742,7 @@
       "type" : "object",
       "properties" : {
         "eClass" : {
-          "const" : "http://www.ipa.fraunhofer.de/kinematics#//Visual"
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Visual"
         },
         "origin" : {
           "$ref" : "#/properties/pose"
@@ -778,6 +756,17 @@
       },
       "additionalProperties" : false,
       "required" : [ "geometry" ]
+    },
+    "block" : {
+      "$id" : "#block",
+      "title" : "Block",
+      "type" : "object",
+      "properties" : {
+        "eClass" : {
+          "const" : "http://www.ipa.fraunhofer.de/urdf#//Block"
+        }
+      },
+      "additionalProperties" : false
     }
   }
 }
