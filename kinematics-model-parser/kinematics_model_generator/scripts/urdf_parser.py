@@ -209,21 +209,9 @@ def parse_elem(node, parent):
         next = node.nextSibling
 
         if node.nodeType == xml.dom.Node.ELEMENT_NODE:
-            elem_attr = None
-            for attr in parent.eClass.eAttributes:
-                if node.tagName == attr._name:
-                    elem_attr = attr
-                    break
-            if not elem_attr:
-                for attr in parent.eClass.eReferences:
-                    if node.tagName == attr._name:
-                        elem_attr = attr
-                        break
-
-            elem = elem_attr.eType.__call__()
+            elem = get_eobj_from_attr(parent, node.tagName)
 
             for name, value in node.attributes.items():
-                conv_val = None
                 conv_val = conv_str_to_type(elem, name, value)
 
                 if type(conv_val) == list:
@@ -255,6 +243,26 @@ def get_root_elem(node):
             return root, node
 
         node = next
+
+
+def get_eobj_from_attr(eobject, key):
+    elem_attr = None
+    for attr in eobject.eClass.eAttributes:
+        if key == attr._name:
+            elem_attr = attr
+            break
+    if not elem_attr:
+        for attr in eobject.eClass.eReferences:
+            if key == attr._name:
+                elem_attr = attr
+                break
+
+    try:
+        elem = elem_attr.eType.__call__()
+    except Exception as e:
+        raise e
+
+    return elem
 
 
 def convert_urdf_component(robot):
