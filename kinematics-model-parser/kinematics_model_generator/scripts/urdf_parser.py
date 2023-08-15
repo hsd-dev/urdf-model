@@ -158,6 +158,7 @@ def conv_str_to_type(elem, name, val_str):
     try:
         val_type = str(elem.eClass.findEStructuralFeature(name).eType)
     except Exception as e:
+        print('EClass ' + elem.eClass.name + ' has no attribute ' + name)
         raise e
     if 'float' in val_type:
         if elem.eGet(name).__class__ == pyecore.valuecontainer.EList:
