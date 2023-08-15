@@ -245,6 +245,21 @@ def get_root_elem(node):
         node = next
 
 
+def dict_to_eobj(data, eobject):
+    for key, value in data.items():
+        if isinstance(value, dict):
+            if hasattr(eobject, key):
+                sub_eobject = get_eobj_from_attr(eobject, key)
+                setattr(eobject, key, sub_eobject)
+                dict_to_eobj(value, sub_eobject)
+        elif isinstance(value, list):
+            if hasattr(eobject, key):
+                sub_eobject = getattr(eobject, key)
+                sub_eobject.extend(value)
+        else:
+            setattr(eobject, key, value)
+
+
 def get_eobj_from_attr(eobject, key):
     elem_attr = None
     for attr in eobject.eClass.eAttributes:
@@ -269,12 +284,28 @@ def convert_urdf_component(robot):
     component = Component()
     component.name = robot.name
     component.version = robot.version
-    
+
+    # The following code is unpredictable
+    # ---
+    # for joint in robot.joint:
+    #     component.joint.append(joint)
+    # ---
+    # the for-loop does not complete for all joint in robot
+    # So the temp strategy is to create a dict from eobj
+    # and convert is back into a new eobject and then append
+    # that to component
+
     for joint in robot.joint:
-        component.joint.append(joint)
+        joint_dict = eobj_to_dict(joint)
+        j = Joint()
+        dict_to_eobj(joint_dict['joint'], j)
+        component.joint.append(j)
 
     for link in robot.link:
-        component.link.append(link)
+        link_dict = eobj_to_dict(link)
+        l = Link()
+        dict_to_eobj(link_dict['link'], l)
+        component.link.append(l)
 
     return component
 
@@ -288,8 +319,9 @@ def main():
     # 'root' at this point is a populated 'Robot' object that can be used
     # in a python application
 
-    model_str = yaml.dump(eobj_to_dict(
-        root), default_flow_style=False, sort_keys=False)
+    model_dict = eobj_to_dict(root)
+    model_str = yaml.dump(
+        model_dict, default_flow_style=False, sort_keys=False)
 
     validate_model(model_str)
 
@@ -297,10 +329,11 @@ def main():
     # Component model is very similar to URDF,
     # except that it has additional attributes like
     # group (useful for MoveIt!), connection points (useful for composition)
+    # TODO: not all joints and links are getting converted
     component = convert_urdf_component(root)
-    component_str = yaml.dump(eobj_to_dict(
-        component), default_flow_style=False, sort_keys=False)
-    write_to_file(output_file, component_str)
+
+    write_to_file(output_file, model_str)
+
 
 
 if __name__ == "__main__":
