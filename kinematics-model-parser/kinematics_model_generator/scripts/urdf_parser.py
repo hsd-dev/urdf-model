@@ -7,6 +7,7 @@ from json import JSONEncoder
 from jsonschema import validate
 import os
 import pyecore
+import requests
 import sys
 import xml.etree.ElementTree as ET
 import yaml
@@ -60,13 +61,9 @@ def insert_component(name, category, raw_file_url, repo,
         "version": version
     }
 
-    trees = {}
-    for name, dot in dot_trees.items():
-        trees[name] = dot
-
     files = {
         'json': (None, json.dumps(component), 'application/json'),
-        'dot_trees': (None, json.dumps(trees), 'application/json'),
+        'dot_trees': (None, json.dumps(dot_trees), 'application/json'),
         'model': (None, json.dumps(model_dict), 'application/json')
     }
 
@@ -371,6 +368,7 @@ def convert_urdf_component(robot):
 
     return component
 
+
 def main():
     urdf_file, output_file = parse_args(sys.argv[1:])
 
@@ -396,6 +394,14 @@ def main():
 
     write_to_file(output_file, model_str)
 
+    insert_component(root.name,
+                    'Manipulator',
+                    'https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ros2/urdf/ur.urdf.xacro',
+                    'https://github.com/UniversalRobots/',
+                    'Universal_Robots_ROS2_Description',
+                    'humble',
+                    dot_trees=tree_dict,
+                    model_dict=model_dict)
 
 
 if __name__ == "__main__":
