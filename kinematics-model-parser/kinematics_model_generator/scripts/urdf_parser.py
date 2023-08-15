@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+from bigtree import find, findall, find_attr, list_to_tree, Node, print_tree, tree_to_dict, tree_to_dot
 import json
 from json import JSONEncoder
 from jsonschema import validate
@@ -71,6 +72,67 @@ def insert_component(name, category, raw_file_url, repo,
 
     r = requests.post('http://127.0.0.1:5000/add', files=files)
     print(f"Status Code: {r.status_code}")
+
+
+def create_tree(component):
+    # prepare tree based on joints
+
+    link_names = []
+    for link in component.link:
+        link_names.append(link.name)
+
+    joint_data = []
+    for joint in component.joint:
+        joint_data.append((joint.name, joint.parent.link, joint.child.link))
+
+    # Create a dictionary to store nodes by name for easy access
+    nodes_by_name = {}
+
+    # Create nodes for each joint and populate the nodes_by_name dictionary
+    for joint_name, parent_name, child_name in joint_data:
+        if parent_name not in link_names:
+            raise Exception(parent_name + ' parent in joint ' +
+                joint_name + ' does not exist. Not a valid tree')
+
+        if child_name not in link_names:
+            raise Exception(child_name + ' child in joint ' +
+                joint_name + ' does not exist. Not a valid tree')
+
+        parent_node = nodes_by_name.get(parent_name, Node(parent_name))
+        parent_link = find_link(component, joint.parent.link)
+        parent_node.is_rigid = is_link_rigid(parent_link)
+
+        child_node = nodes_by_name.get(child_name, Node(child_name))
+        child_link = find_link(component, joint.child.link)
+        child_node.is_rigid = is_link_rigid(child_link)
+
+        child_node.parent = parent_node
+
+        nodes_by_name[parent_name] = parent_node
+        nodes_by_name[child_name] = child_node
+
+    # Find the root node
+    root_node = None
+    for node in nodes_by_name.values():
+        if not node.parent:
+            root_node = node
+            break
+
+    return root_node
+
+
+def find_link(component, link_name):
+    for link in component.link:
+        if link.name == link_name:
+            return link
+
+    return None
+
+
+def is_link_rigid(link):
+    if link and link.inertial:
+        return True
+    return False
 
 
 def parse_args(args):
