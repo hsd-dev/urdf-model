@@ -18,11 +18,13 @@ class Component(EObject, metaclass=MetaEClass):
 
     name = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     version = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
-    joint = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
-    link = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
+    gitRepo = EReference(ordered=True, unique=True, containment=True, derived=False)
     group = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
+    component = EReference(ordered=True, unique=True, containment=False, derived=False, upper=-1)
+    link = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
+    joint = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
 
-    def __init__(self, *, name=None, version=None, joint=None, link=None, group=None):
+    def __init__(self, *, name=None, version=None, gitRepo=None, group=None, component=None, link=None, joint=None):
         # if kwargs:
         #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
 
@@ -34,29 +36,61 @@ class Component(EObject, metaclass=MetaEClass):
         if version is not None:
             self.version = version
 
-        if joint:
-            self.joint.extend(joint)
-
-        if link:
-            self.link.extend(link)
+        if gitRepo is not None:
+            self.gitRepo = gitRepo
 
         if group:
             self.group.extend(group)
 
+        if component:
+            self.component.extend(component)
+
+        if link:
+            self.link.extend(link)
+
+        if joint:
+            self.joint.extend(joint)
+
 
 class Group(EObject, metaclass=MetaEClass):
 
+    name = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     base_link = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     end_link = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
 
-    def __init__(self, *, base_link=None, end_link=None):
+    def __init__(self, *, name=None, base_link=None, end_link=None):
         # if kwargs:
         #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
 
         super().__init__()
+
+        if name is not None:
+            self.name = name
 
         if base_link is not None:
             self.base_link = base_link
 
         if end_link is not None:
             self.end_link = end_link
+
+
+class GitRepo(EObject, metaclass=MetaEClass):
+
+    repo = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
+    package = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
+    version = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
+
+    def __init__(self, *, repo=None, package=None, version=None):
+        # if kwargs:
+        #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
+
+        super().__init__()
+
+        if repo is not None:
+            self.repo = repo
+
+        if package is not None:
+            self.package = package
+
+        if version is not None:
+            self.version = version

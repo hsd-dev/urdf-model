@@ -22,8 +22,9 @@ import rclpy
 
 # xtext grammar expects specific sequence of features
 attr_seq = {'Robot': ['name', 'version', 'link', 'joint'],
-            'Component': ['name', 'version', 'link', 'joint', 'group'],
-            'GitRepo': ['raw_file_url', 'repo', 'package', 'version'],
+            'Component': ['name', 'version', 'gitRepo', 'group', 'link', 'joint', 'group'],
+            'GitRepo': ['repo', 'package', 'version'],
+            'Group': ['name', 'base_link', 'end_link'],
             'Macro': ['name', 'parameters', 'link', 'joint', 'condition'],
             'Block': ['link', 'joint'],
             'Condition': ['param', 'if_', 'unless'],
@@ -342,7 +343,7 @@ def get_eobj_from_attr(eobject, key):
 
 def convert_urdf_component(robot):
     component = Component()
-    component.name = robot.name
+    component.name = quoted(robot.name)
     component.version = robot.version
 
     # The following code is unpredictable
@@ -390,19 +391,33 @@ def main():
     # Component model is very similar to URDF,
     # except that it has additional attributes like
     # group (useful for MoveIt!), connection points (useful for composition)
-    # TODO: not all joints and links are getting converted
     component = convert_urdf_component(root)
 
-    write_to_file(output_file, model_str)
+    # TODO: let this info come from prog args
+    gitRepo = GitRepo()
+    gitRepo.repo = quoted("https://github.com/UniversalRobots/")
+    gitRepo.package = quoted("ur_description")
+    gitRepo.version = quoted("humble")
+    component.gitRepo = gitRepo
 
-    insert_component(root.name,
-                    'Manipulator',
-                    'https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ros2/urdf/ur.urdf.xacro',
-                    'https://github.com/UniversalRobots/',
-                    'Universal_Robots_ROS2_Description',
-                    'humble',
-                    dot_trees=tree_dict,
-                    model_dict=model_dict)
+    component_tree = create_tree(component)
+    print_tree(component_tree)
+    tree_dict = {}
+    tree_dict[component.name] = tree_to_dict(component_tree)
+
+    component_dict = eobj_to_dict(component)
+    component_str = yaml.dump(
+        component_dict, default_flow_style=None, sort_keys=False)
+    write_to_file(output_file, component_str)
+
+    # insert_component(root.name,
+    #                 'Manipulator',
+    #                 'https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ros2/urdf/ur.urdf.xacro',
+    #                 'https://github.com/UniversalRobots/',
+    #                 'Universal_Robots_ROS2_Description',
+    #                 'humble',
+    #                 dot_trees=tree_dict,
+    #                 model_dict=component_dict)
 
 
 if __name__ == "__main__":
