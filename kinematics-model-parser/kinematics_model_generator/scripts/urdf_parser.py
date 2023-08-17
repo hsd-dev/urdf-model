@@ -395,11 +395,6 @@ def main(input_file_name, **kwargs):
     # 'root' at this point is a populated 'Robot' object that can be used
     # in a python application
 
-    # TODO: fix this
-    # model_dict = eobj_to_dict(root)
-    # model_str = yaml.dump(model_dict, default_flow_style=None, sort_keys=False)
-    # validate_model(model_str)
-
     # convert URDF to component model
     # Component model is very similar to URDF,
     # except that it has additional attributes like
