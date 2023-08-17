@@ -97,16 +97,11 @@ def process_args(argv, require_input=True):
                                  formatter=IndentedHelpFormatterWithNL())
     parser.add_option("-o", dest="output", metavar="FILE",
                       help="write output to FILE instead of stdout")
-    parser.add_option("--deps", action="store_true", dest="just_deps",
-                      help="print file dependencies")
-    parser.add_option("--xacro-ns", action="store_false", default=True, dest="xacro_ns",
-                      help="require xacro namespace prefix for xacro tags")
-    parser.add_option("--inorder", "-i", action="store_true", dest="in_order",
-                      help="processing in read order (default, can be omitted)")
-    parser.add_option("--repo", "-r", dest="repo", help="Github repo link where the xacro file is located")
-    parser.add_option("--package", "-p", dest="package", help="ROS package to which the xacro file belongs")
-    parser.add_option("--version", "-n", dest="version", help="Git version of xacro file")
-    parser.add_option("--raw_file_url", "-f", dest="raw_file_url", help="Raw github xacro file")
+    parser.add_option("--distro", "-d", dest="distro", help="ROS distro")
+    parser.add_option("--repo", "-r", dest="repo", help="Github repo link where the URDF (xacro) file is located")
+    parser.add_option("--package", "-p", dest="package", help="ROS package to which the URDF (xacro) file belongs")
+    parser.add_option("--version", "-n", dest="version", help="Git version of URDF (xacro) file")
+    parser.add_option("--category", "-c", dest="category", help="Category of the component")
 
     # verbosity options
     parser.add_option("-q", action="store_const", dest="verbosity", const=0,
@@ -134,13 +129,12 @@ def process_args(argv, require_input=True):
 
     parser.set_defaults(just_deps=False, verbosity=1)
     (options, pos_args) = parser.parse_args(filtered_args)
-    if options.in_order:
-        message(
-            "xacro: in-order processing became default in ROS Melodic. You can drop the option.")
-    options.in_order = True
 
     if not options.output:
         parser.error('Output file must be provided')
+
+    if not options.distro:
+        parser.error('ROS distro has to be provided')
 
     if not options.repo:
         parser.error('Github repo of the xacro file has to be provided')
@@ -150,9 +144,6 @@ def process_args(argv, require_input=True):
 
     if not options.version:
         parser.error('Git version of the xacro file must be provided')
-
-    if not options.raw_file_url:
-        parser.error('Github raw link of the xacro file must be provided')
 
     if len(pos_args) != 1:
         if require_input:

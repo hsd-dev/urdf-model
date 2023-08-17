@@ -14,6 +14,7 @@ import sys
 import xml.etree.ElementTree as ET
 import yaml
 
+import kinematics_model_generator
 from kinematics_model_generator.utils.xml_helper import *
 from kinematics_model_generator.kinematics.urdf import *
 from kinematics_model_generator.kinematics.component import *
@@ -384,10 +385,10 @@ def convert_urdf_component(robot):
     return component
 
 
-def main():
-    urdf_file, output_file = parse_args(sys.argv[1:])
+def main(input_file_name, **kwargs):
+    # urdf_file, output_file = parse_args(sys.argv[1:])
 
-    doc = parse(None, urdf_file)
+    doc = parse(None, input_file_name)
     root, node = get_root_elem(doc.firstChild)
     parse_elem(node, root)
 
@@ -405,13 +406,15 @@ def main():
     # group (useful for MoveIt!), connection points (useful for composition)
     component = convert_urdf_component(root)
 
-    # TODO: let this info come from prog args
     gitRepo = GitRepo()
-    gitRepo.distro = quoted("humble")
-    gitRepo.repo = quoted("https://github.com/UniversalRobots/")
-    gitRepo.package = quoted("ur_description")
-    gitRepo.version = quoted("asd23g")
+    gitRepo.distro = quoted(kwargs['distro'])
+    gitRepo.repo = quoted(kwargs['repo'])
+    gitRepo.package = quoted(kwargs['package'])
+    gitRepo.version = quoted(kwargs['version'])
     component.gitRepo = gitRepo
+
+    if 'category' in kwargs:
+        component.category = kwargs['category']
 
     component_tree = create_tree(component)
     print_tree(component_tree)
@@ -419,7 +422,7 @@ def main():
     tree_dict[component.name] = tree_to_dict(component_tree)
 
     component_dict = eobj_to_dict(component)
-    write_to_file(output_file, component_dict)
+    write_to_file(kwargs['output'], component_dict)
 
     # insert_component(root.name,
     #                 'Manipulator',
@@ -432,4 +435,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    opts, input_file_name = kinematics_model_generator.process_args(
+        sys.argv[1:])
+    main(input_file_name, **vars(opts))
