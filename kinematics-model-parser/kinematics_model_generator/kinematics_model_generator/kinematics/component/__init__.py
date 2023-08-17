@@ -1,22 +1,24 @@
 
 from .component import getEClassifier, eClassifiers
 from .component import name, nsURI, nsPrefix, eClass
-from .component import Component, Group
+from .component import Component, Group, GitRepo
 
 from kinematics_model_generator.kinematics.urdf import Link, Joint
 
 from . import component
 
-__all__ = ['Component', 'Group']
+__all__ = ['Component', 'Group', 'GitRepo']
 
 eSubpackages = []
 eSuperPackage = None
 component.eSubpackages = eSubpackages
 component.eSuperPackage = eSuperPackage
 
-Component.joint.eType = Joint
-Component.link.eType = Link
+Component.gitRepo.eType = GitRepo
 Component.group.eType = Group
+Component.component.eType = Component
+Component.link.eType = Link
+Component.joint.eType = Joint
 
 otherClassifiers = []
 
