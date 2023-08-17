@@ -22,8 +22,8 @@ import rclpy
 
 # xtext grammar expects specific sequence of features
 attr_seq = {'Robot': ['name', 'version', 'link', 'joint'],
-            'Component': ['name', 'version', 'gitRepo', 'group', 'link', 'joint', 'group'],
-            'GitRepo': ['repo', 'package', 'version'],
+            'Component': ['name', 'version', 'category', 'gitRepo', 'group', 'link', 'joint', 'group'],
+            'GitRepo': ['distro', 'repo', 'package', 'version'],
             'Group': ['name', 'base_link', 'end_link'],
             'Macro': ['name', 'parameters', 'link', 'joint', 'condition'],
             'Block': ['link', 'joint'],
@@ -394,9 +394,10 @@ def main():
 
     # TODO: let this info come from prog args
     gitRepo = GitRepo()
+    gitRepo.distro = quoted("humble")
     gitRepo.repo = quoted("https://github.com/UniversalRobots/")
     gitRepo.package = quoted("ur_description")
-    gitRepo.version = quoted("humble")
+    gitRepo.version = quoted("asd23g")
     component.gitRepo = gitRepo
 
     component_tree = create_tree(component)

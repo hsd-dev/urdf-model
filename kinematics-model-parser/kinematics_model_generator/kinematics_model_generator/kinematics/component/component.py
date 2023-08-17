@@ -18,13 +18,14 @@ class Component(EObject, metaclass=MetaEClass):
 
     name = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     version = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
+    category = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     gitRepo = EReference(ordered=True, unique=True, containment=True, derived=False)
     group = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
     component = EReference(ordered=True, unique=True, containment=False, derived=False, upper=-1)
     link = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
     joint = EReference(ordered=True, unique=True, containment=True, derived=False, upper=-1)
 
-    def __init__(self, *, name=None, version=None, gitRepo=None, group=None, component=None, link=None, joint=None):
+    def __init__(self, *, name=None, version=None, category=None, gitRepo=None, group=None, component=None, link=None, joint=None):
         # if kwargs:
         #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
 
@@ -35,6 +36,9 @@ class Component(EObject, metaclass=MetaEClass):
 
         if version is not None:
             self.version = version
+
+        if category is not None:
+            self.category = category
 
         if gitRepo is not None:
             self.gitRepo = gitRepo
@@ -76,15 +80,19 @@ class Group(EObject, metaclass=MetaEClass):
 
 class GitRepo(EObject, metaclass=MetaEClass):
 
+    distro = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     repo = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     package = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     version = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
 
-    def __init__(self, *, repo=None, package=None, version=None):
+    def __init__(self, *, distro=None, repo=None, package=None, version=None):
         # if kwargs:
         #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
 
         super().__init__()
+
+        if distro is not None:
+            self.distro = distro
 
         if repo is not None:
             self.repo = repo
