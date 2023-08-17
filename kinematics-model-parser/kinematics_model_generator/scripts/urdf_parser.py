@@ -8,6 +8,8 @@ from jsonschema import validate
 import os
 import pyecore
 import requests
+import ruamel.yaml
+from ruamel.yaml.error import YAMLError
 import sys
 import xml.etree.ElementTree as ET
 import yaml
@@ -47,7 +49,11 @@ def quoted_presenter(dumper, data):
     return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='"')
 
 
-yaml.add_representer(quoted, quoted_presenter)
+yaml = ruamel.yaml.YAML()
+yaml.representer.add_representer(quoted, quoted_presenter)
+
+# PyYAML
+# yaml.add_representer(quoted, quoted_presenter)
 
 
 def insert_component(name, category, raw_file_url, repo,
@@ -149,10 +155,9 @@ def parse_args(args):
     return args.urdf, args.output
 
 
-def write_to_file(filename, text):
-    f = open(filename, "w")
-    f.write(text)
-    f.close()
+def write_to_file(filename, data):
+    with open(filename, 'w') as f:
+        yaml.dump(data, f)
 
 
 def conv_str_to_type(elem, name, val_str):
@@ -179,6 +184,14 @@ def conv_str_to_type(elem, name, val_str):
                 return val_str
         return quoted(val_str)
     return val_str
+
+
+# convert list into flow-style (default is block style)
+def FSlist(l):
+    from ruamel.yaml.comments import CommentedSeq
+    cs = CommentedSeq(l)
+    cs.fa.set_flow_style()
+    return cs
 
 
 # Convert arbitrary EObject to YAML
@@ -226,7 +239,7 @@ def eobj_to_dict(eobj):
                     else:
                         attr_elems.append(attr_elem)
                 if len(attr_elems) > 0:
-                    attr_set[attr] = attr_elems
+                    attr_set[attr] = FSlist(attr_elems)
                     attr_dict.update(attr_set)
             # TODO: this is not generic, won't work for other meta-models
             elif 'kinematics_model_generator.kinematics' in str(type(attr_value)):
@@ -255,9 +268,9 @@ def validate_model(model_str):
     schema = json.load(schema_file)
 
     try:
-        model = yaml.safe_load(model_str)
+        model = yaml.load(model_str)
         validate(instance=model, schema=schema)
-    except yaml.YAMLError as exc:
+    except YAMLError as exc:
         print(exc.problem)
 
 
@@ -381,10 +394,10 @@ def main():
     # 'root' at this point is a populated 'Robot' object that can be used
     # in a python application
 
-    model_dict = eobj_to_dict(root)
-    model_str = yaml.dump(
-        model_dict, default_flow_style=None, sort_keys=False)
-    validate_model(model_str)
+    # TODO: fix this
+    # model_dict = eobj_to_dict(root)
+    # model_str = yaml.dump(model_dict, default_flow_style=None, sort_keys=False)
+    # validate_model(model_str)
 
     # convert URDF to component model
     # Component model is very similar to URDF,
@@ -406,9 +419,7 @@ def main():
     tree_dict[component.name] = tree_to_dict(component_tree)
 
     component_dict = eobj_to_dict(component)
-    component_str = yaml.dump(
-        component_dict, default_flow_style=None, sort_keys=False)
-    write_to_file(output_file, component_str)
+    write_to_file(output_file, component_dict)
 
     # insert_component(root.name,
     #                 'Manipulator',
