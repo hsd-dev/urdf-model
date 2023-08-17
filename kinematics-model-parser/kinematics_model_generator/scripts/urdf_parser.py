@@ -90,11 +90,11 @@ def create_tree(component):
     for joint_name, parent_name, child_name in joint_data:
         if parent_name not in link_names:
             raise Exception(parent_name + ' parent in joint ' +
-                joint_name + ' does not exist. Not a valid tree')
+                            joint_name + ' does not exist. Not a valid tree')
 
         if child_name not in link_names:
             raise Exception(child_name + ' child in joint ' +
-                joint_name + ' does not exist. Not a valid tree')
+                            joint_name + ' does not exist. Not a valid tree')
 
         parent_node = nodes_by_name.get(parent_name, Node(parent_name))
         parent_link = find_link(component, joint.parent.link)
