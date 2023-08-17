@@ -264,12 +264,12 @@ class Geometry(EObject, metaclass=MetaEClass):
 
 class Inertia(EObject, metaclass=MetaEClass):
 
-    ixx = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
-    ixy = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
-    ixz = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
-    iyy = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
-    iyz = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
-    izz = EAttribute(eType=EString, unique=True, derived=False, changeable=True, default_value='0')
+    ixx = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
+    ixy = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
+    ixz = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
+    iyy = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
+    iyz = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
+    izz = EAttribute(eType=EDouble, unique=True, derived=False, changeable=True, default_value=0.0)
 
     def __init__(self, *, ixx=None, ixy=None, ixz=None, iyy=None, iyz=None, izz=None):
         # if kwargs:
@@ -374,14 +374,14 @@ class Joint(EObject, metaclass=MetaEClass):
 
 class Limit(EObject, metaclass=MetaEClass):
 
-    effort = EAttribute(eType=EString, unique=True, derived=False,
-                        changeable=True, default_value='0')
-    lower = EAttribute(eType=EString, unique=True, derived=False,
-                       changeable=True, default_value='0')
-    upper = EAttribute(eType=EString, unique=True, derived=False,
-                       changeable=True, default_value='0')
-    velocity = EAttribute(eType=EString, unique=True, derived=False,
-                          changeable=True, default_value='0')
+    effort = EAttribute(eType=EDouble, unique=True, derived=False,
+                        changeable=True, default_value=0.0)
+    lower = EAttribute(eType=EDouble, unique=True, derived=False,
+                       changeable=True, default_value=0.0)
+    upper = EAttribute(eType=EDouble, unique=True, derived=False,
+                       changeable=True, default_value=0.0)
+    velocity = EAttribute(eType=EDouble, unique=True, derived=False,
+                          changeable=True, default_value=0.0)
 
     def __init__(self, *, effort=None, lower=None, upper=None, velocity=None):
         # if kwargs:
@@ -434,8 +434,8 @@ class Link(EObject, metaclass=MetaEClass):
 
 class Mass(EObject, metaclass=MetaEClass):
 
-    value = EAttribute(eType=EString, unique=True, derived=False,
-                       changeable=True, default_value='0')
+    value = EAttribute(eType=EDouble, unique=True, derived=False,
+                       changeable=True, default_value=0.0)
 
     def __init__(self, *, value=None):
         # if kwargs:
@@ -494,8 +494,8 @@ class MaterialGlobal(EObject, metaclass=MetaEClass):
 class Mesh(EObject, metaclass=MetaEClass):
 
     filename = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
-    scale = EAttribute(eType=EString, unique=True, derived=False,
-                       changeable=True, default_value='1 1 1')
+    scale = EAttribute(eType=EDouble, unique=False, derived=False,
+                       changeable=True, upper=-1, default_value=1.0)
 
     def __init__(self, *, filename=None, scale=None):
         # if kwargs:
@@ -506,8 +506,8 @@ class Mesh(EObject, metaclass=MetaEClass):
         if filename is not None:
             self.filename = filename
 
-        if scale is not None:
-            self.scale = scale
+        if scale:
+            self.scale.extend(scale)
 
 
 class Mimic(EObject, metaclass=MetaEClass):

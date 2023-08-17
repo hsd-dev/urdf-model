@@ -238,22 +238,22 @@
           "const" : "http://www.ipa.fraunhofer.de/urdf#//Inertia"
         },
         "ixx" : {
-          "type" : "string"
+          "type" : "number"
         },
         "ixy" : {
-          "type" : "string"
+          "type" : "number"
         },
         "ixz" : {
-          "type" : "string"
+          "type" : "number"
         },
         "iyy" : {
-          "type" : "string"
+          "type" : "number"
         },
         "iyz" : {
-          "type" : "string"
+          "type" : "number"
         },
         "izz" : {
-          "type" : "string"
+          "type" : "number"
         }
       },
       "additionalProperties" : false
@@ -336,16 +336,16 @@
           "const" : "http://www.ipa.fraunhofer.de/urdf#//Limit"
         },
         "effort" : {
-          "type" : "string"
+          "type" : "number"
         },
         "lower" : {
-          "type" : "string"
+          "type" : "number"
         },
         "upper" : {
-          "type" : "string"
+          "type" : "number"
         },
         "velocity" : {
-          "type" : "string"
+          "type" : "number"
         }
       },
       "additionalProperties" : false
@@ -386,7 +386,7 @@
           "const" : "http://www.ipa.fraunhofer.de/urdf#//Mass"
         },
         "value" : {
-          "type" : "string"
+          "type" : "number"
         }
       },
       "additionalProperties" : false
@@ -444,7 +444,10 @@
           "type" : "string"
         },
         "scale" : {
-          "type" : "string"
+          "type" : "array",
+          "items" : {
+            "type" : "number"
+          }
         }
       },
       "additionalProperties" : false,
