@@ -84,8 +84,9 @@ class GitRepo(EObject, metaclass=MetaEClass):
     repo = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     package = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     version = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
+    branch = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
 
-    def __init__(self, *, distro=None, repo=None, package=None, version=None):
+    def __init__(self, *, distro=None, repo=None, package=None, version=None, branch=None):
         # if kwargs:
         #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
 
@@ -102,3 +103,6 @@ class GitRepo(EObject, metaclass=MetaEClass):
 
         if version is not None:
             self.version = version
+
+        if branch is not None:
+            self.branch = branch

@@ -15,6 +15,7 @@ import xml.etree.ElementTree as ET
 import yaml
 
 import kinematics_model_generator
+from kinematics_model_generator.cli import process_args
 from kinematics_model_generator.utils.xml_helper import *
 from kinematics_model_generator.kinematics.urdf import *
 from kinematics_model_generator.kinematics.component import *
@@ -26,7 +27,7 @@ import rclpy
 # xtext grammar expects specific sequence of features
 attr_seq = {'Robot': ['name', 'version', 'link', 'joint'],
             'Component': ['name', 'version', 'category', 'gitRepo', 'group', 'link', 'joint', 'group'],
-            'GitRepo': ['distro', 'repo', 'package', 'version'],
+            'GitRepo': ['distro', 'repo', 'branch', 'package', 'version'],
             'Group': ['name', 'base_link', 'end_link'],
             'Macro': ['name', 'parameters', 'link', 'joint', 'condition'],
             'Block': ['link', 'joint'],
@@ -38,7 +39,7 @@ attr_seq = {'Robot': ['name', 'version', 'link', 'joint'],
             'Joint': ['name', 'type', 'parent', 'child', 'origin', 'axis', 'limit']}
 
 # if the EString is defined as rule in xtext, it cannot have quotes
-is_rule = {'Joint': ['type']}
+is_rule = {'Joint': ['type'], 'Component': ['category']}
 
 
 # dump string with double quotes
@@ -57,20 +58,10 @@ yaml.representer.add_representer(quoted, quoted_presenter)
 # yaml.add_representer(quoted, quoted_presenter)
 
 
-def insert_component(name, category, raw_file_url, repo,
-                     package, version, dot_trees, model_dict):
+def insert_component(name, dot_trees, model_dict):
     url = 'http://127.0.0.1:5000/add'
-    component = {
-        "name": name,
-        "category": category,
-        "raw_file_url": raw_file_url,
-        "repo": repo,
-        "package": package,
-        "version": version
-    }
 
     files = {
-        'json': (None, json.dumps(component), 'application/json'),
         'dot_trees': (None, json.dumps(dot_trees), 'application/json'),
         'model': (None, json.dumps(model_dict), 'application/json')
     }
@@ -404,8 +395,10 @@ def main(input_file_name, **kwargs):
     gitRepo = GitRepo()
     gitRepo.distro = quoted(kwargs['distro'])
     gitRepo.repo = quoted(kwargs['repo'])
+    gitRepo.branch = quoted(kwargs['branch'])
     gitRepo.package = quoted(kwargs['package'])
     gitRepo.version = quoted(kwargs['version'])
+
     component.gitRepo = gitRepo
 
     if 'category' in kwargs:
@@ -419,17 +412,11 @@ def main(input_file_name, **kwargs):
     component_dict = eobj_to_dict(component)
     write_to_file(kwargs['output'], component_dict)
 
-    # insert_component(root.name,
-    #                 'Manipulator',
-    #                 'https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ros2/urdf/ur.urdf.xacro',
-    #                 'https://github.com/UniversalRobots/',
-    #                 'Universal_Robots_ROS2_Description',
-    #                 'humble',
-    #                 dot_trees=tree_dict,
-    #                 model_dict=component_dict)
+    insert_component(component.name,
+                    dot_trees=tree_dict,
+                    model_dict=component_dict)
 
 
 if __name__ == "__main__":
-    opts, input_file_name = kinematics_model_generator.process_args(
-        sys.argv[1:])
+    opts, input_file_name = process_args(sys.argv[1:])
     main(input_file_name, **vars(opts))

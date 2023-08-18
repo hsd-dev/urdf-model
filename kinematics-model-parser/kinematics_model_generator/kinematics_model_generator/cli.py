@@ -99,6 +99,7 @@ def process_args(argv, require_input=True):
                       help="write output to FILE instead of stdout")
     parser.add_option("--distro", "-d", dest="distro", help="ROS distro")
     parser.add_option("--repo", "-r", dest="repo", help="Github repo link where the URDF (xacro) file is located")
+    parser.add_option("--branch", "-b", dest="branch", help="Github repo branch where the URDF (xacro) file is located")
     parser.add_option("--package", "-p", dest="package", help="ROS package to which the URDF (xacro) file belongs")
     parser.add_option("--version", "-n", dest="version", help="Git version of URDF (xacro) file")
     parser.add_option("--category", "-c", dest="category", help="Category of the component")
@@ -138,6 +139,9 @@ def process_args(argv, require_input=True):
 
     if not options.repo:
         parser.error('Github repo of the xacro file has to be provided')
+
+    if not options.branch:
+        parser.error('Github repo branch of the xacro file has to be provided')
 
     if not options.package:
         parser.error('ROS package of the xacro file must be provided')
