@@ -16,7 +16,8 @@ install(DIRECTORY resources DESTINATION share/${PROJECT_NAME})
 ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
-  scripts/kinematics_parser.py
+  scripts/batch_model_generator.py
+  scripts/urdf_parser.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
