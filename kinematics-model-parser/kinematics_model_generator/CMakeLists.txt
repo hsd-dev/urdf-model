@@ -70,6 +70,7 @@ ament_python_install_package(${PROJECT_NAME})
 install(PROGRAMS
   scripts/batch_model_generator.py
   scripts/urdf_parser.py
+  scripts/update_mcp.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
