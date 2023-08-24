@@ -61,8 +61,9 @@ class Group(EObject, metaclass=MetaEClass):
     name = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     base_link = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
     end_link = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
+    ros2_control = EAttribute(eType=EString, unique=True, derived=False, changeable=True)
 
-    def __init__(self, *, name=None, base_link=None, end_link=None):
+    def __init__(self, *, name=None, base_link=None, end_link=None, ros2_control=None):
         # if kwargs:
         #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
 
@@ -76,6 +77,9 @@ class Group(EObject, metaclass=MetaEClass):
 
         if end_link is not None:
             self.end_link = end_link
+
+        if ros2_control is not None:
+            self.ros2_control = ros2_control
 
 
 class GitRepo(EObject, metaclass=MetaEClass):
