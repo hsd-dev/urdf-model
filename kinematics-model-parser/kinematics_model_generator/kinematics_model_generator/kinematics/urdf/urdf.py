@@ -835,12 +835,3 @@ class Visual(EObject, metaclass=MetaEClass):
 
         if material is not None:
             self.material = material
-
-
-class Block(EObject, metaclass=MetaEClass):
-
-    def __init__(self):
-        # if kwargs:
-        #    raise AttributeError('unexpected arguments: {}'.format(kwargs))
-
-        super().__init__()

@@ -274,5 +274,4 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="material" eType="#//Material"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Block"/>
 </ecore:EPackage>
