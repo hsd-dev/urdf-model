@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="kinematics" nsURI="http://www.ipa.fraunhofer.de/kinematics"
-    nsPrefix="kinematics">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="urdf" nsURI="http://www.ipa.fraunhofer.de/urdf" nsPrefix="urdf">
   <eClassifiers xsi:type="ecore:EClass" name="ActuatorTransmission">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mechanicalReduction" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" unsettable="true"/>
@@ -41,22 +40,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cylinder">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" unsettable="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="radius" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" unsettable="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DocumentRoot">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mixed" unique="false" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="xMLNSPrefixMap" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry"
-        transient="true" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="xSISchemaLocation" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry"
-        transient="true" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="robot" upperBound="-2"
-        eType="#//Robot" volatile="true" transient="true" derived="true" containment="true"
-        resolveProxies="false"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dynamics">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="damping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
@@ -143,6 +129,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="JointType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Limit">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="effort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
         defaultValueLiteral="0" unsettable="true"/>
@@ -184,8 +171,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Mesh">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="1 1 1" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" unique="false" upperBound="3"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="1"
+        unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mimic">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="joint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -204,22 +192,22 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pose">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rpy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0 0 0" unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xyz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0 0 0" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rpy" unique="false" upperBound="3"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="0"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xyz" unique="false" upperBound="3"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="0"
+        unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Robot">
     <eStructuralFeatures xsi:type="ecore:EReference" name="joint" upperBound="-1"
-        eType="#//Joint" volatile="true" transient="true" containment="true" resolveProxies="false"/>
+        eType="#//Joint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="link" upperBound="-1" eType="#//Link"
-        volatile="true" transient="true" containment="true" resolveProxies="false"/>
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="material" upperBound="-1"
-        eType="#//MaterialGlobal" volatile="true" transient="true" containment="true"
-        resolveProxies="false"/>
+        eType="#//MaterialGlobal" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transmission" upperBound="-1"
-        eType="#//Transmission" volatile="true" transient="true" containment="true"
-        resolveProxies="false"/>
+        eType="#//Transmission" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="1.0" unsettable="true"/>
@@ -286,4 +274,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="material" eType="#//Material"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Block"/>
 </ecore:EPackage>

@@ -1,0 +1,25 @@
+components:
+- repo: https://github.com/ipa-hsd/realsense-ros
+  branch: ros2-development-urdf
+  version: 056d7b02354e376bc2655d5ae2535d110428f4bc
+  package: realsense2_description
+  urdf: realsense-ros/realsense2_description/urdf/_d435_camera.urdf
+  category: camera
+- repo: https://github.com/ipa-hsd/prbt_robot/
+  branch: update-ros2-canopen-beta-release-urdf
+  version: 9a80a8f487090f56b3120cfba61ff1ba84d9c917
+  package: prbt_robot_support
+  urdf: prbt_robot/prbt_robot_support/urdf/prbt.urdf
+  category: manipulator
+- repo: https://github.com/ipa-hsd/Universal_Robots_ROS2_Description
+  branch: humble-urdf
+  version: ed77f40eb03744e822e377f820cf44ca5d85872a
+  package: ur_description
+  urdf: Universal_Robots_ROS2_Description/urdf/ur5e.urdf
+  category: manipulator
+- repo: https://github.com/ipa-hsd/schunk_io_driver/
+  branch: main-urdf
+  version: f5c54333ed207c0cc31e512d6872807b29a5b46a
+  package: schunk_egp40_description
+  urdf: schunk_io_driver/schunk_egp40_description/urdf/schunk_egp40.urdf
+  category: gripper

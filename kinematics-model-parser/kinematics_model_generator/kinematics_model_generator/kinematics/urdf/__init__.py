@@ -1,26 +1,22 @@
 
-from .kinematics import getEClassifier, eClassifiers
-from .kinematics import name, nsURI, nsPrefix, eClass
-from .kinematics import ActuatorTransmission, Axis, Box, Calibration, Child, Collision, Color, Cylinder, DocumentRoot, Dynamics, GapJointTransmission, Geometry, Inertia, Inertial, Joint, Limit, Link, Mass, Material, MaterialGlobal, Mesh, Mimic, Name, Parent, PassiveJointTransmission, Pose, Robot, SafetyController, Sphere, Texture, Transmission, UseSimulatedGripperJointType, Verbose, Visual
+from .urdf import getEClassifier, eClassifiers
+from .urdf import name, nsURI, nsPrefix, eClass
+from .urdf import ActuatorTransmission, Axis, Box, Calibration, Child, Collision, Color, Cylinder, Dynamics, GapJointTransmission, Geometry, Inertia, Inertial, Joint, JointType, Limit, Link, Mass, Material, MaterialGlobal, Mesh, Mimic, Name, Parent, PassiveJointTransmission, Pose, Robot, SafetyController, Sphere, Texture, Transmission, UseSimulatedGripperJointType, Verbose, Visual, Block
 
-from pyecore.ecore import EStringToStringMapEntry
 
-from . import kinematics
+from . import urdf
 
-__all__ = ['ActuatorTransmission', 'Axis', 'Box', 'Calibration', 'Child', 'Collision', 'Color', 'Cylinder', 'DocumentRoot', 'Dynamics', 'GapJointTransmission', 'Geometry', 'Inertia', 'Inertial', 'Joint', 'Limit', 'Link', 'Mass',
-           'Material', 'MaterialGlobal', 'Mesh', 'Mimic', 'Name', 'Parent', 'PassiveJointTransmission', 'Pose', 'Robot', 'SafetyController', 'Sphere', 'Texture', 'Transmission', 'UseSimulatedGripperJointType', 'Verbose', 'Visual']
+__all__ = ['ActuatorTransmission', 'Axis', 'Box', 'Calibration', 'Child', 'Collision', 'Color', 'Cylinder', 'Dynamics', 'GapJointTransmission', 'Geometry', 'Inertia', 'Inertial', 'Joint', 'JointType', 'Limit', 'Link', 'Mass',
+           'Material', 'MaterialGlobal', 'Mesh', 'Mimic', 'Name', 'Parent', 'PassiveJointTransmission', 'Pose', 'Robot', 'SafetyController', 'Sphere', 'Texture', 'Transmission', 'UseSimulatedGripperJointType', 'Verbose', 'Visual', 'Block']
 
 eSubpackages = []
 eSuperPackage = None
-kinematics.eSubpackages = eSubpackages
-kinematics.eSuperPackage = eSuperPackage
+urdf.eSubpackages = eSubpackages
+urdf.eSuperPackage = eSuperPackage
 
 Collision.origin.eType = Pose
 Collision.geometry.eType = Geometry
 Collision.verbose.eType = Verbose
-DocumentRoot.xMLNSPrefixMap.eType = EStringToStringMapEntry
-DocumentRoot.xSISchemaLocation.eType = EStringToStringMapEntry
-DocumentRoot.robot.eType = Robot
 Geometry.box.eType = Box
 Geometry.cylinder.eType = Cylinder
 Geometry.sphere.eType = Sphere
@@ -61,7 +57,7 @@ Visual.origin.eType = Pose
 Visual.geometry.eType = Geometry
 Visual.material.eType = Material
 
-otherClassifiers = []
+otherClassifiers = [JointType]
 
 for classif in otherClassifiers:
     eClassifiers[classif.name] = classif
