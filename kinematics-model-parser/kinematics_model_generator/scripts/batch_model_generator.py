@@ -36,7 +36,7 @@ def generate_models(component_list, output_folder):
             package=component['package'],
             distro='humble',
             category=component['category'],
-            push_to_db=True)
+            push_to_db=False)
 
 if __name__ == "__main__":
     component_list_file = sys.argv[1]   # config/component_list.yaml
