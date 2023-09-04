@@ -23,3 +23,9 @@ components:
   package: schunk_egp40_description
   urdf: schunk_io_driver/schunk_egp40_description/urdf/schunk_egp40.urdf
   category: gripper
+- repo: https://github.com/ipa-hsd/workcell_descriptions/
+  branch: ur_workcell
+  version: 8ce6a1e7009111e450e8c1ee13fb197764b9f506
+  package: ur_workcell_description
+  urdf: workcell_descriptions/ur_workcell_description/urdf/workcell.urdf
+  category: gripper
