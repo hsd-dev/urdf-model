@@ -13,7 +13,7 @@ components:
   category: manipulator
 - repo: https://github.com/ipa-hsd/Universal_Robots_ROS2_Description
   branch: humble-urdf
-  version: ed77f40eb03744e822e377f820cf44ca5d85872a
+  version: f54b7c42aa10d18e5f5a9f27dae4857bd9b5ef2e
   package: ur_description
   urdf: Universal_Robots_ROS2_Description/urdf/ur5e.urdf
   category: manipulator
