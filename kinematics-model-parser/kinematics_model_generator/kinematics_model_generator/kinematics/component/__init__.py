@@ -3,7 +3,7 @@ from .component import getEClassifier, eClassifiers
 from .component import name, nsURI, nsPrefix, eClass
 from .component import Attachment, BaseAttachment, Component, ConfiguredComponent, Connection, FlangeAttachment, Group, GitRepo
 
-from kinematics_model_generator.kinematics.urdf import Link, Joint
+from kinematics_model_generator.kinematics.urdf import Link, Joint, Pose
 
 from . import component
 
