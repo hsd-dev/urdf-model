@@ -1,0 +1,320 @@
+component:
+  name: "prbt"
+  version: '1.0'
+  category: manipulator
+  gitRepo:
+    distro: "humble"
+    repo: "https://github.com/ipa-hsd/prbt_robot/"
+    branch: "update-ros2-canopen-beta-release-urdf"
+    package: "prbt_robot_support"
+    version: "0265373879f5d0d2b60234111e8a44f913917fc9"
+  link:
+  - name: "base_link"
+    inertial:
+      mass:
+        value: 2.4
+      inertia:
+        ixx: 0.0
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.0
+        iyz: 0.0
+        izz: 0.0
+    visual:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        mesh:
+          filename: "package://prbt_robot_support/meshes/foot.dae"
+    collision:
+      origin:
+        rpy: [3.141592653589793, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.065]
+      geometry:
+        cylinder:
+          length: "0.13"
+          radius: "0.09275"
+  - name: "link_1"
+    inertial:
+      origin:
+        xyz: [0.0, -0.026, -0.051]
+      mass:
+        value: 7.1
+      inertia:
+        ixx: 0.0353
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.0301
+        iyz: 0.00904
+        izz: 0.0187
+    visual:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        mesh:
+          filename: "package://prbt_robot_support/meshes/link_1.dae"
+    collision:
+      origin:
+        rpy: [0.0, 1.5707963267948966, 1.5707963267948966]
+        xyz: [0.0, -0.1, 0.0]
+      geometry:
+        cylinder:
+          length: "0.10"
+          radius: "0.065"
+  - name: "link_2"
+    inertial:
+      origin:
+        xyz: [0.0, 0.162, 0.134]
+      mass:
+        value: 1.7
+      inertia:
+        ixx: 0.0358
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.00322
+        iyz: -0.00145
+        izz: 0.0366
+    visual:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        mesh:
+          filename: "package://prbt_robot_support/meshes/link_2.dae"
+    collision:
+      origin:
+        rpy: [-0.4487989505128276, 0.0, 0.0]
+        xyz: [0.0, 0.3, 0.145]
+      geometry:
+        box:
+          size: "0.11 0.1 0.075"
+  - name: "link_3"
+    inertial:
+      origin:
+        xyz: [0.0, 0.043, -0.027]
+      mass:
+        value: 4.8
+      inertia:
+        ixx: 0.0206
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.0108
+        iyz: -0.00536
+        izz: 0.0163
+    visual:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        mesh:
+          filename: "package://prbt_robot_support/meshes/link_3.dae"
+    collision:
+      origin:
+        rpy: [0.0, 1.5707963267948966, 1.5707963267948966]
+        xyz: [0.0, 0.1, 0.0]
+      geometry:
+        cylinder:
+          length: "0.10"
+          radius: "0.065"
+  - name: "link_4"
+    inertial:
+      origin:
+        xyz: [0.0, -0.061, 0.204]
+      mass:
+        value: 0.9
+      inertia:
+        ixx: 0.00679
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.00491
+        iyz: 0.00267
+        izz: 0.0034
+    visual:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        mesh:
+          filename: "package://prbt_robot_support/meshes/link_4.dae"
+    collision:
+      origin:
+        rpy: [-0.10471975511965977, 0.0, 0.0]
+        xyz: [0.0, -0.115, 0.25]
+      geometry:
+        box:
+          size: "0.09 0.06 0.12"
+  - name: "link_5"
+    inertial:
+      origin:
+        xyz: [-0.001, 0.021, -0.032]
+      mass:
+        value: 2.6
+      inertia:
+        ixx: 0.00737
+        ixy: 4.78e-06
+        ixz: 6e-05
+        iyy: 0.00587
+        iyz: -0.00171
+        izz: 0.00396
+    visual:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        mesh:
+          filename: "package://prbt_robot_support/meshes/link_5.dae"
+    collision:
+      origin:
+        rpy: [0.0, 1.5707963267948966, 1.5707963267948966]
+        xyz: [0.0, 0.05, 0.0]
+      geometry:
+        cylinder:
+          length: "0.049"
+          radius: "0.0435"
+  - name: "flange"
+    inertial:
+      origin:
+        xyz: [0.0, 0.0, 0.0]
+      mass:
+        value: 0.02
+      inertia:
+        ixx: 0.0
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.0
+        iyz: 0.0
+        izz: 0.0
+    visual:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        mesh:
+          filename: "package://prbt_robot_support/meshes/flange.dae"
+    collision:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, -0.0035]
+      geometry:
+        cylinder:
+          length: "0.02"
+          radius: "0.0331"
+  - name: "base"
+  - name: "tool0"
+  joint:
+  - name: "joint_1"
+    type: revolute
+    parent:
+      link: "base_link"
+    child:
+      link: "link_1"
+    origin:
+      rpy: [0.0, 0.0, -3.141592653589793]
+      xyz: [0.0, 0.0, 0.2604]
+    axis:
+      xyz: "0 0 1"
+    limit:
+      effort: 370.0
+      lower: -2.96706
+      upper: 2.96706
+      velocity: 1.57
+  - name: "joint_2"
+    type: revolute
+    parent:
+      link: "link_1"
+    child:
+      link: "link_2"
+    origin:
+      rpy: [1.5707963267948966, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    axis:
+      xyz: "0 0 1"
+    limit:
+      effort: 370.0
+      lower: -2.53073
+      upper: 2.53073
+      velocity: 1.57
+  - name: "joint_3"
+    type: revolute
+    parent:
+      link: "link_2"
+    child:
+      link: "link_3"
+    origin:
+      rpy: [0.0, 3.141592653589793, 0.0]
+      xyz: [0.0, 0.35, 0.0]
+    axis:
+      xyz: "0 0 1"
+    limit:
+      effort: 176.0
+      lower: -2.3562
+      upper: 2.3562
+      velocity: 1.57
+  - name: "joint_4"
+    type: revolute
+    parent:
+      link: "link_3"
+    child:
+      link: "link_4"
+    origin:
+      rpy: [-1.5707963267948966, 3.141592653589793, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    axis:
+      xyz: "0 0 1"
+    limit:
+      effort: 176.0
+      lower: -2.96706
+      upper: 2.96706
+      velocity: 1.57
+  - name: "joint_5"
+    type: revolute
+    parent:
+      link: "link_4"
+    child:
+      link: "link_5"
+    origin:
+      rpy: [1.5707963267948966, 0.0, 3.141592653589793]
+      xyz: [0.0, 0.0, 0.307]
+    axis:
+      xyz: "0 0 1"
+    limit:
+      effort: 41.6
+      lower: -2.96706
+      upper: 2.96706
+      velocity: 1.57
+  - name: "joint_6"
+    type: revolute
+    parent:
+      link: "link_5"
+    child:
+      link: "flange"
+    origin:
+      rpy: [-1.5707963267948966, 0.0, 0.0]
+      xyz: [0.0, 0.084, 0.0]
+    axis:
+      xyz: "0 0 1"
+    limit:
+      effort: 20.1
+      lower: -3.12414
+      upper: 3.12414
+      velocity: 1.57
+  - name: "base_link-base"
+    type: fixed
+    parent:
+      link: "base_link"
+    child:
+      link: "base"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+  - name: "flange-tool0"
+    type: fixed
+    parent:
+      link: "flange"
+    child:
+      link: "tool0"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]

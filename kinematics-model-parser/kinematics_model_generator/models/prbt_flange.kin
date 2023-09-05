@@ -1,0 +1,28 @@
+component:
+  name: "ur5e_workcell"
+  version: '1.0'
+  category: flange
+  gitRepo:
+    distro: "humble"
+    repo: "https://github.com/ipa-hsd/workcell_descriptions/"
+    branch: "main"
+    package: "prbt_flange_description"
+    version: "78056e57203eec70df2b80eb084c86c99e3cbec7"
+  link:
+  - name: "prbt_flange_link"
+    visual:
+      origin:
+        rpy: [3.141592653589793, 0.0, 0.0]
+        xyz: [-0.0325, 0.0325, 0.015]
+      geometry:
+        mesh:
+          filename: "package://prbt_flange_description/meshes/flange_v3.STL"
+          scale: [0.001, 0.001, 0.001]
+    collision:
+      origin:
+        rpy: [3.141592653589793, 0.0, 0.0]
+        xyz: [-0.0325, 0.0325, 0.015]
+      geometry:
+        mesh:
+          filename: "package://prbt_flange_description/meshes/flange_v3.STL"
+          scale: [0.001, 0.001, 0.001]
