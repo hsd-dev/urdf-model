@@ -25,19 +25,19 @@ components:
   category: gripper
 - repo: https://github.com/ipa-hsd/workcell_descriptions/
   branch: main
-  version: 78056e57203eec70df2b80eb084c86c99e3cbec7
+  version: eb2d4f365002f1421249390cd576725d6fd4d1fa
   package: ur_workcell_description
   urdf: workcell_descriptions/ur_workcell_description/urdf/workcell.urdf
   category: workcell
 - repo: https://github.com/ipa-hsd/workcell_descriptions/
   branch: main
-  version: 78056e57203eec70df2b80eb084c86c99e3cbec7
+  version: eb2d4f365002f1421249390cd576725d6fd4d1fa
   package: prbt_workcell_description
   urdf: workcell_descriptions/prbt_workcell_description/urdf/workcell.urdf
   category: workcell
 - repo: https://github.com/ipa-hsd/workcell_descriptions/
   branch: main
-  version: 78056e57203eec70df2b80eb084c86c99e3cbec7
+  version: eb2d4f365002f1421249390cd576725d6fd4d1fa
   package: prbt_flange_description
   urdf: workcell_descriptions/prbt_flange_description/urdf/prbt_flange.urdf
   category: flange
