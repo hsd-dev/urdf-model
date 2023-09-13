@@ -19,25 +19,25 @@ components:
   category: manipulator
 - repo: https://github.com/ipa-hsd/schunk_io_driver/
   branch: main-urdf
-  version: 1c06670b46bee2c80b7d78f6472281f183efa837
+  version: 1551612e441691b023ce000a692d219b71a37bca
   package: schunk_egp40_description
   urdf: schunk_io_driver/schunk_egp40_description/urdf/schunk_egp40.urdf
   category: gripper
 - repo: https://github.com/ipa-hsd/workcell_descriptions/
   branch: main
-  version: eb2d4f365002f1421249390cd576725d6fd4d1fa
+  version: 7d01bbf40ee184648f83bb15db309cd445afa5b0
   package: ur_workcell_description
   urdf: workcell_descriptions/ur_workcell_description/urdf/workcell.urdf
   category: workcell
 - repo: https://github.com/ipa-hsd/workcell_descriptions/
   branch: main
-  version: eb2d4f365002f1421249390cd576725d6fd4d1fa
+  version: 7d01bbf40ee184648f83bb15db309cd445afa5b0
   package: prbt_workcell_description
   urdf: workcell_descriptions/prbt_workcell_description/urdf/workcell.urdf
   category: workcell
 - repo: https://github.com/ipa-hsd/workcell_descriptions/
   branch: main
-  version: eb2d4f365002f1421249390cd576725d6fd4d1fa
+  version: 7d01bbf40ee184648f83bb15db309cd445afa5b0
   package: prbt_flange_description
   urdf: workcell_descriptions/prbt_flange_description/urdf/prbt_flange.urdf
   category: flange
