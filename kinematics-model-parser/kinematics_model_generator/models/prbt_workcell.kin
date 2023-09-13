@@ -1,13 +1,19 @@
 component:
-  name: "ur5e_workcell"
+  name: "prbt_workcell"
   version: '1.0'
-  category: workcell
+  category: gripper
   gitRepo:
     distro: "humble"
     repo: "https://github.com/ipa-hsd/workcell_descriptions/"
     branch: "main"
     package: "prbt_workcell_description"
     version: "78056e57203eec70df2b80eb084c86c99e3cbec7"
+  flangeAttachment:
+  - name: "robot_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "robot_link"
   link:
   - name: "visuals_link"
     visual:

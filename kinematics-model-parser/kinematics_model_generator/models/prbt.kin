@@ -8,6 +8,22 @@ component:
     branch: "update-ros2-canopen-beta-release-urdf"
     package: "prbt_robot_support"
     version: "0265373879f5d0d2b60234111e8a44f913917fc9"
+  baseAttachment:
+  - name: "base_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "base_link"
+  flangeAttachment:
+  - name: "gripper_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "tool0"
+  group:
+  - name: "prbt_arm"
+    baseLink: "base_link"
+    endLink: "tool0"
   link:
   - name: "base_link"
     inertial:

@@ -8,6 +8,23 @@ component:
     branch: "humble-urdf"
     package: "ur_description"
     version: "6f61d49d7e2c3a30613486768238fc466a5bf2eb"
+  baseAttachment:
+  - name: "base_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "base_link"
+  flangeAttachment:
+  - name: "gripper_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "tool0"
+  group:
+  - name: "prbt_arm"
+    baseLink: "base_link"
+    endLink: "tool0"
+    ros2_control: ""
   link:
   - name: "base_link"
   - name: "base_link_inertia"

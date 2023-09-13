@@ -8,6 +8,12 @@ component:
     branch: "main-urdf"
     package: "schunk_egp40_description"
     version: "1c06670b46bee2c80b7d78f6472281f183efa837"
+  baseAttachment:
+  - name: "base_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "schunk_egp40_body_link"
   link:
   - name: "schunk_egp40_body_link"
     inertial:

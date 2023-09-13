@@ -1,0 +1,17 @@
+component:
+  name: "composed_ur_workcell"
+  version: '1.0'
+  component:
+  - name: "robot"
+    type: "ur5e"
+  - name: "prbt_workcell"
+    type: "prbt_workcell"
+  - name: "gripper"
+    type: "schunk_egp40"
+  connection:
+  - name: "workcell_robot_joint"
+    baseAttachment: "ur5e.base_attachment"
+    flangeAttachment: "prbt_workcell.robot_attachment"
+  - name: "robot_gripper_joint"
+    baseAttachment: "schunk_egp40.base_attachment"
+    flangeAttachment: "ur5e.gripper_attachment"
