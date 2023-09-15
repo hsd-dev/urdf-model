@@ -21,10 +21,9 @@ component:
       xyz: [0.0, 0.0, 0.0]
     parent: "tool0"
   group:
-  - name: "prbt_arm"
+  - name: "ur5e_arm"
     baseLink: "base_link"
     endLink: "tool0"
-    ros2_control: ""
   link:
   - name: "base_link"
   - name: "base_link_inertia"
