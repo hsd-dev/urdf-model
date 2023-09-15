@@ -1,6 +1,12 @@
 component:
   name: "composed_ur_workcell"
   version: '1.0'
+  gitRepo:
+    distro: "humble"
+    repo: ""
+    branch: ""
+    package: "composed_ur_workcell_description"
+    version: ""
   component:
   - name: "robot"
     type: "ur5e"
