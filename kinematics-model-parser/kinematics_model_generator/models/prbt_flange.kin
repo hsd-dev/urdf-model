@@ -1,0 +1,45 @@
+component:
+  name: "prbt_flange"
+  version: '1.0'
+  category: flange
+  gitRepo:
+    distro: "humble"
+    repo: "https://github.com/ipa-hsd/workcell_descriptions/"
+    branch: "main"
+    package: "prbt_flange_description"
+    version: "78056e57203eec70df2b80eb084c86c99e3cbec7"
+  baseAttachment:
+  - name: "robot_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "prbt_flange_link"
+  flangeAttachment:
+  - name: "gripper_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0129032258]
+    parent: "prbt_flange_link"
+  - name: "camera_attachment"
+    origin:
+      rpy: [0.0, -1.57079632679, 1.57079632679]
+      xyz: [0, -0.05, 0.025]
+    parent: "prbt_flange_link"
+  link:
+  - name: "prbt_flange_link"
+    visual:
+      origin:
+        rpy: [3.141592653589793, 0.0, 0.0]
+        xyz: [-0.0325, 0.0325, 0.015]
+      geometry:
+        mesh:
+          filename: "package://prbt_flange_description/meshes/flange_v3.STL"
+          scale: [0.001, 0.001, 0.001]
+    collision:
+      origin:
+        rpy: [3.141592653589793, 0.0, 0.0]
+        xyz: [-0.0325, 0.0325, 0.015]
+      geometry:
+        mesh:
+          filename: "package://prbt_flange_description/meshes/flange_v3.STL"
+          scale: [0.001, 0.001, 0.001]

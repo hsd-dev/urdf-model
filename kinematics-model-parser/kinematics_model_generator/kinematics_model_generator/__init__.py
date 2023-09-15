@@ -405,9 +405,12 @@ def parse_urdf(insput_file_str=None, input_file_name=None, **kwargs):
         component.category = kwargs['category']
 
     component_tree = create_tree(component)
-    print_tree(component_tree)
     tree_dict = {}
-    tree_dict[component.name] = tree_to_dict(component_tree)
+    try:
+        print_tree(component_tree)
+        tree_dict[component.name] = tree_to_dict(component_tree)
+    except Exception as e:
+        print(e)
 
     component_dict = eobj_to_dict(component)
     write_to_file(kwargs['output'], component_dict)

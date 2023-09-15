@@ -1,0 +1,58 @@
+component:
+  name: "realsense2_camera"
+  version: '1.0'
+  category: camera
+  gitRepo:
+    distro: "humble"
+    repo: "https://github.com/ipa-hsd/realsense-ros"
+    branch: "ros2-development-urdf"
+    package: "realsense2_description"
+    version: "056d7b02354e376bc2655d5ae2535d110428f4bc"
+  baseAttachment:
+  - name: "base_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "base_link"
+  link:
+  - name: "base_link"
+  - name: "camera_bottom_screw_frame"
+  - name: "camera_link"
+    inertial:
+      origin:
+        xyz: [0.0, 0.0, 0.0]
+      mass:
+        value: 0.072
+      inertia:
+        ixx: 0.003881243
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.00049894
+        iyz: 0.0
+        izz: 0.003879257
+    collision:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, -0.0175, 0.0]
+      geometry:
+        box:
+          size: "0.02505 0.09 0.025"
+  joint:
+  - name: "camera_joint"
+    type: fixed
+    parent:
+      link: "base_link"
+    child:
+      link: "camera_bottom_screw_frame"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+  - name: "camera_link_joint"
+    type: fixed
+    parent:
+      link: "camera_bottom_screw_frame"
+    child:
+      link: "camera_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.010600000000000002, 0.0175, 0.0125]

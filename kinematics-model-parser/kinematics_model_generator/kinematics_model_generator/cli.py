@@ -103,6 +103,7 @@ def process_args(argv, require_input=True):
     parser.add_option("--package", "-p", dest="package", help="ROS package to which the URDF (xacro) file belongs")
     parser.add_option("--version", "-n", dest="version", help="Git version of URDF (xacro) file")
     parser.add_option("--category", "-c", dest="category", help="Category of the component")
+    parser.add_option("--push_to_db", "-u", dest="db", help="Push parsed component to DB")
 
     # verbosity options
     parser.add_option("-q", action="store_const", dest="verbosity", const=0,

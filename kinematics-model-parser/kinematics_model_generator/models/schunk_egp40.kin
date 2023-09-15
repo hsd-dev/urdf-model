@@ -1,0 +1,150 @@
+component:
+  name: "schunk_egp40"
+  version: '1.0'
+  category: gripper
+  gitRepo:
+    distro: "humble"
+    repo: "https://github.com/ipa-hsd/schunk_io_driver/"
+    branch: "main-urdf"
+    package: "schunk_egp40_description"
+    version: "1c06670b46bee2c80b7d78f6472281f183efa837"
+  baseAttachment:
+  - name: "base_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "schunk_egp40_body_link"
+  link:
+  - name: "schunk_egp40_body_link"
+    inertial:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.013, -0.03655]
+      mass:
+        value: 0.5
+      inertia:
+        ixx: 0.0002508170833333333
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.00028931708333333327
+        iyz: 0.0
+        izz: 9.483333333333334e-05
+    visual:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.013, -0.03655]
+      geometry:
+        mesh:
+          filename: "package://schunk_egp40_description/meshes/schunk_egp40_body.STL"
+          scale: [0.001, 0.001, 0.001]
+    collision:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.013, -0.03655]
+      geometry:
+        mesh:
+          filename: "package://schunk_egp40_description/meshes/schunk_egp40_body.STL"
+          scale: [0.001, 0.001, 0.001]
+  - name: "schunk_egp40_finger_left_link"
+    inertial:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.008, -0.07925]
+      mass:
+        value: 0.1
+      inertia:
+        ixx: 3.394083333333333e-06
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 1.4594083333333333e-05
+        iyz: 0.0
+        izz: 1.5466666666666665e-05
+    visual:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.008, -0.07925]
+      geometry:
+        mesh:
+          filename: "package://schunk_egp40_description/meshes/schunk_finger_left.STL"
+          scale: [0.001, 0.001, 0.001]
+    collision:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.008, -0.07925]
+      geometry:
+        mesh:
+          filename: "package://schunk_egp40_description/meshes/schunk_finger_left.STL"
+          scale: [0.001, 0.001, 0.001]
+  - name: "schunk_egp40_finger_right_link"
+    inertial:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.008, -0.07925]
+      mass:
+        value: 0.1
+      inertia:
+        ixx: 3.394083333333333e-06
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 1.4594083333333333e-05
+        iyz: 0.0
+        izz: 1.5466666666666665e-05
+    visual:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.008, -0.07925]
+      geometry:
+        mesh:
+          filename: "package://schunk_egp40_description/meshes/schunk_finger_right.STL"
+          scale: [0.001, 0.001, 0.001]
+    collision:
+      origin:
+        rpy: [1.5707963267948966, 0.0, 0.0]
+        xyz: [-0.02, 0.008, -0.07925]
+      geometry:
+        mesh:
+          filename: "package://schunk_egp40_description/meshes/schunk_finger_right.STL"
+          scale: [0.001, 0.001, 0.001]
+  - name: "tool_tip"
+  joint:
+  - name: "schunk_egp40_finger_left_joint"
+    type: prismatic
+    parent:
+      link: "schunk_egp40_body_link"
+    child:
+      link: "schunk_egp40_finger_left_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0427]
+    axis:
+      xyz: "1 0 0"
+    limit:
+      effort: 100.0
+      lower: -0.0025
+      upper: 0.0025
+      velocity: 100.0
+  - name: "schunk_egp40_finger_right_joint"
+    type: prismatic
+    parent:
+      link: "schunk_egp40_body_link"
+    child:
+      link: "schunk_egp40_finger_right_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.002, 0.0427]
+    axis:
+      xyz: "1 0 0"
+    limit:
+      effort: 100.0
+      lower: 0.0025
+      upper: -0.0025
+      velocity: 100.0
+  - name: "schunk_egp40_tip_joint"
+    type: fixed
+    parent:
+      link: "schunk_egp40_body_link"
+    child:
+      link: "tool_tip"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0884]

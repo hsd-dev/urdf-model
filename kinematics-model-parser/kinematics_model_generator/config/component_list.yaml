@@ -7,19 +7,37 @@ components:
   category: camera
 - repo: https://github.com/ipa-hsd/prbt_robot/
   branch: update-ros2-canopen-beta-release-urdf
-  version: 9a80a8f487090f56b3120cfba61ff1ba84d9c917
+  version: 0265373879f5d0d2b60234111e8a44f913917fc9
   package: prbt_robot_support
   urdf: prbt_robot/prbt_robot_support/urdf/prbt.urdf
   category: manipulator
 - repo: https://github.com/ipa-hsd/Universal_Robots_ROS2_Description
   branch: humble-urdf
-  version: ed77f40eb03744e822e377f820cf44ca5d85872a
+  version: 6f61d49d7e2c3a30613486768238fc466a5bf2eb
   package: ur_description
   urdf: Universal_Robots_ROS2_Description/urdf/ur5e.urdf
   category: manipulator
 - repo: https://github.com/ipa-hsd/schunk_io_driver/
   branch: main-urdf
-  version: f5c54333ed207c0cc31e512d6872807b29a5b46a
+  version: 1551612e441691b023ce000a692d219b71a37bca
   package: schunk_egp40_description
   urdf: schunk_io_driver/schunk_egp40_description/urdf/schunk_egp40.urdf
   category: gripper
+- repo: https://github.com/ipa-hsd/workcell_descriptions/
+  branch: main
+  version: 7d01bbf40ee184648f83bb15db309cd445afa5b0
+  package: ur_workcell_description
+  urdf: workcell_descriptions/ur_workcell_description/urdf/workcell.urdf
+  category: workcell
+- repo: https://github.com/ipa-hsd/workcell_descriptions/
+  branch: main
+  version: 7d01bbf40ee184648f83bb15db309cd445afa5b0
+  package: prbt_workcell_description
+  urdf: workcell_descriptions/prbt_workcell_description/urdf/workcell.urdf
+  category: workcell
+- repo: https://github.com/ipa-hsd/workcell_descriptions/
+  branch: main
+  version: 7d01bbf40ee184648f83bb15db309cd445afa5b0
+  package: prbt_flange_description
+  urdf: workcell_descriptions/prbt_flange_description/urdf/prbt_flange.urdf
+  category: flange

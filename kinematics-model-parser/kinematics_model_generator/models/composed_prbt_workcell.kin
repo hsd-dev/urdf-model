@@ -1,0 +1,38 @@
+component:
+  name: "composed_prbt_workcell"
+  version: '1.0'
+  gitRepo:
+    distro: "humble"
+    repo: ""
+    branch: ""
+    package: "composed_prbt_workcell_description"
+    version: ""
+  component:
+  - name: "robot"
+    type: "prbt"
+    prefix: "prbt_"
+  - name: "prbt_workcell"
+    type: "prbt_workcell"
+  - name: "gripper"
+    type: "schunk_egp40"
+  - name: "gripper_flamge"
+    type: "prbt_flange"
+  - name: "camera"
+    type: "realsense2_camera"
+  connection:
+  - name: "workcell_robot_joint"
+    baseAttachment: "prbt.base_attachment"
+    flangeAttachment: "prbt_workcell.robot_attachment"
+  - name: "robot_flange_joint"
+    baseAttachment: "prbt_flange.robot_attachment"
+    flangeAttachment: "prbt.gripper_attachment"
+  - name: "flange_gripper_joint"
+    baseAttachment: "schunk_egp40.base_attachment"
+    flangeAttachment: "prbt_flange.gripper_attachment"
+  - name: "flange_camera_joint"
+    baseAttachment: "realsense2_camera.base_attachment"
+    flangeAttachment: "prbt_flange.camera_attachment"
+  group:
+  - name: "robot_gripper"
+    baseLink: "prbt.base_link"
+    endLink: "schunk_egp40.tool_tip"

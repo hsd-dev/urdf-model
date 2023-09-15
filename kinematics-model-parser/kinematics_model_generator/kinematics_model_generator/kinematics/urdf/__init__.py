@@ -1,13 +1,13 @@
 
 from .urdf import getEClassifier, eClassifiers
 from .urdf import name, nsURI, nsPrefix, eClass
-from .urdf import ActuatorTransmission, Axis, Box, Calibration, Child, Collision, Color, Cylinder, Dynamics, GapJointTransmission, Geometry, Inertia, Inertial, Joint, JointType, Limit, Link, Mass, Material, MaterialGlobal, Mesh, Mimic, Name, Parent, PassiveJointTransmission, Pose, Robot, SafetyController, Sphere, Texture, Transmission, UseSimulatedGripperJointType, Verbose, Visual, Block
+from .urdf import ActuatorTransmission, Axis, Box, Calibration, Child, Collision, Color, Cylinder, Dynamics, GapJointTransmission, Geometry, Inertia, Inertial, Joint, JointType, Limit, Link, Mass, Material, MaterialGlobal, Mesh, Mimic, Name, Parent, PassiveJointTransmission, Pose, Robot, SafetyController, Sphere, Texture, Transmission, UseSimulatedGripperJointType, Verbose, Visual
 
 
 from . import urdf
 
 __all__ = ['ActuatorTransmission', 'Axis', 'Box', 'Calibration', 'Child', 'Collision', 'Color', 'Cylinder', 'Dynamics', 'GapJointTransmission', 'Geometry', 'Inertia', 'Inertial', 'Joint', 'JointType', 'Limit', 'Link', 'Mass',
-           'Material', 'MaterialGlobal', 'Mesh', 'Mimic', 'Name', 'Parent', 'PassiveJointTransmission', 'Pose', 'Robot', 'SafetyController', 'Sphere', 'Texture', 'Transmission', 'UseSimulatedGripperJointType', 'Verbose', 'Visual', 'Block']
+           'Material', 'MaterialGlobal', 'Mesh', 'Mimic', 'Name', 'Parent', 'PassiveJointTransmission', 'Pose', 'Robot', 'SafetyController', 'Sphere', 'Texture', 'Transmission', 'UseSimulatedGripperJointType', 'Verbose', 'Visual']
 
 eSubpackages = []
 eSuperPackage = None

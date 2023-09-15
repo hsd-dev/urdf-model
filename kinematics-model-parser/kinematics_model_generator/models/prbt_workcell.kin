@@ -1,0 +1,184 @@
+component:
+  name: "prbt_workcell"
+  version: '1.0'
+  category: gripper
+  gitRepo:
+    distro: "humble"
+    repo: "https://github.com/ipa-hsd/workcell_descriptions/"
+    branch: "main"
+    package: "prbt_workcell_description"
+    version: "78056e57203eec70df2b80eb084c86c99e3cbec7"
+  flangeAttachment:
+  - name: "robot_attachment"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.0, 0.0]
+    parent: "robot_link"
+  link:
+  - name: "visuals_link"
+    visual:
+      geometry:
+        mesh:
+          filename: "package://prbt_workcell_description/meshes/prbt_cell_v1.0.STL"
+          scale: [0.001, 0.001, 0.001]
+  - name: "shield_front_link"
+    inertial:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      mass:
+        value: 5.0
+      inertia:
+        ixx: 0.5615104166666666
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 1.1606666666666665
+        iyz: 0.0
+        izz: 0.6008437499999999
+    collision:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        box:
+          size: "1.2 0.045 1.16"
+  - name: "shield_rear_link"
+    inertial:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      mass:
+        value: 5.0
+      inertia:
+        ixx: 0.5640416666666666
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 1.1606666666666665
+        iyz: 0.0
+        izz: 0.6033749999999999
+    collision:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        box:
+          size: "1.2 0.09 1.16"
+  - name: "shield_right_link"
+    inertial:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      mass:
+        value: 5.0
+      inertia:
+        ixx: 0.8273333333333333
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.5615104166666666
+        iyz: 0.0
+        izz: 0.2675104166666667
+    collision:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        box:
+          size: "0.045 0.8 1.16"
+  - name: "shield_left_link"
+    inertial:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      mass:
+        value: 5.0
+      inertia:
+        ixx: 0.8273333333333333
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 0.5615104166666666
+        iyz: 0.0
+        izz: 0.2675104166666667
+    collision:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      geometry:
+        box:
+          size: "0.045 0.8 1.16"
+  - name: "robotcell_base_link"
+    inertial:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.0]
+      mass:
+        value: 70.0
+      inertia:
+        ixx: 5.975666666666667
+        ixy: 0.0
+        ixz: 0.0
+        iyy: 10.642333333333333
+        iyz: 0.0
+        izz: 12.133333333333333
+    collision:
+      origin:
+        rpy: [0.0, 0.0, 0.0]
+        xyz: [0.0, 0.0, 0.31]
+      geometry:
+        box:
+          size: "1.2 0.8 0.62"
+  - name: "robot_link"
+  joint:
+  - name: "robotcell_base_to_visual"
+    type: fixed
+    parent:
+      link: "robotcell_base_link"
+    child:
+      link: "visuals_link"
+    origin:
+      rpy: [0.0, 0.0, 1.5707963267948966]
+      xyz: [0.6, -0.4, 0.0]
+  - name: "robotcell_base_to_front_joint"
+    type: fixed
+    parent:
+      link: "robotcell_base_link"
+    child:
+      link: "shield_front_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, 0.3775, 1.2]
+  - name: "robotcell_base_to_rear"
+    type: fixed
+    parent:
+      link: "robotcell_base_link"
+    child:
+      link: "shield_rear_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.0, -0.35500000000000004, 1.2]
+  - name: "robotcell_base_to_left"
+    type: fixed
+    parent:
+      link: "robotcell_base_link"
+    child:
+      link: "shield_left_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [-0.5775, 0.0, 1.2]
+  - name: "robotcell_base_to_right"
+    type: fixed
+    parent:
+      link: "robotcell_base_link"
+    child:
+      link: "shield_right_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.5775, 0.0, 1.2]
+  - name: "robot_cell_base_to_robot_link"
+    type: fixed
+    parent:
+      link: "robotcell_base_link"
+    child:
+      link: "robot_link"
+    origin:
+      rpy: [0.0, 0.0, 0.0]
+      xyz: [0.315, 0.02, 0.62]
