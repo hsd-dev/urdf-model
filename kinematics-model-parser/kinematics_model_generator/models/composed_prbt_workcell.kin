@@ -32,3 +32,7 @@ component:
   - name: "flange_camera_joint"
     baseAttachment: "realsense2_camera.base_attachment"
     flangeAttachment: "prbt_flange.camera_attachment"
+  group:
+  - name: "robot_gripper"
+    baseLink: "prbt.base_link"
+    endLink: "schunk_egp40.tool_tip"
