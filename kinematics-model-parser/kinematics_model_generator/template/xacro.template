@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="{{ component.name }}">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="use_fake_hardware" default="false" />
+    {% for arg in component.args -%}
+    <xacro:arg name="{{ arg.name }}" default="{{ arg.value }}" />
+    {% endfor %}
+
+    <xacro:include filename="{{component.urdf}}" />
+
+    <xacro:if value="$(arg use_fake_hardware)">
+        <xacro:include filename="{{component.fake_hw.include}}" />
+        <xacro:{{component.fake_hw.name}} name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    </xacro:if>
+    <xacro:unless value="$(arg use_fake_hardware)">
+        <xacro:include filename="$(find {{component.package}})/{{component.ros2control_path}}" />
+        {% for macro in component.macros -%}
+        <xacro:{{ macro.name }}
+            {% for param in macro.params -%}
+            {{ param }}="$(arg {{ param }})"
+            {% endfor %} />{% endfor %}
+    </xacro:unless>
+</robot>
