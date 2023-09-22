@@ -28,7 +28,7 @@ RUN git clone --single-branch --branch main https://github.com/ipa-hsd/urdf-mode
 # clone the repositories specified in component_list.yaml
 RUN chmod +x ./urdf-model/kinematics-model-parser/scripts/clone_packages.sh \
     && /bin/bash -c './urdf-model/kinematics-model-parser/scripts/clone_packages.sh \
-        "./urdf-model/kinematics-model-parser/kinematics_model_generator/config/component_list.yaml" \
+        "./urdf-model/component_list.yaml" \
         "/app/kinematic_components_web_app/static/moveit2_ws/src"'
 
 WORKDIR /app/kinematic_components_web_app/static/moveit2_ws
