@@ -32,12 +32,10 @@ def process_doc(doc, mappings=None, **kwargs):
 
     # if not yet defined: initialize filestack
     if not xacro.filestack:
-        # xacro.init_stacks(None)
-        xacro.restore_filestack([None])
+        xacro.init_stacks(None)
 
     macros = xacro.Table()
-    # symbols = xacro.Table(xacro._global_symbols)
-    symbols = xacro.Table(xacro.global_symbols)
+    symbols = xacro.Table(xacro._global_symbols)
 
     # apply xacro:targetNamespace as global xmlns (if defined)
     targetNS = doc.documentElement.getAttribute('xacro:targetNamespace')
@@ -59,8 +57,7 @@ def process_doc(doc, mappings=None, **kwargs):
 def process_file(input_file_name, **kwargs):
     """main processing pipeline"""
     # initialize file stack for error-reporting
-    # xacro.init_stacks(input_file_name)
-    xacro.restore_filestack([input_file_name])
+    xacro.init_stacks(input_file_name)
     # parse the document into a xml.dom tree
     doc = xacro.parse(None, input_file_name)
     # perform macro replacement
