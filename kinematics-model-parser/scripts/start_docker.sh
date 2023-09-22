@@ -5,7 +5,7 @@
 docker container stop urdf-toolchain
 docker container rm urdf-toolchain
 
-docker run -it --name urdf-toolchain -p 5500:5500 -d urdf-toolchain:latest
+docker run -it --name urdf-toolchain --net host -p 5500:5500 -d urdf-toolchain:latest
 
 docker exec -it -d urdf-toolchain  /bin/bash -c "flask --app app run --host 0.0.0.0 --port 5500"
 
