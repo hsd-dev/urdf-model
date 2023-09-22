@@ -24,6 +24,7 @@ component:
   - name: "ur5e_arm"
     baseLink: "base_link"
     endLink: "tool0"
+    ros2_control: "ur_description/urdf/ur.ros2_control.xacro"
   link:
   - name: "base_link"
   - name: "base_link_inertia"
