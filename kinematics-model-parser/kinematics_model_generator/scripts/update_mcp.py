@@ -154,13 +154,11 @@ if __name__ == "__main__":
     ros2control_path = ros2control_path.split('/', 1)[1]
     ros2control_abs = get_abs_path(package, ros2control_path)
 
-    output = sys.argv[3]
-
     # link and joint prefix
     # some xacros use 'tf_prefix' instead of 'prefix'
     prefix = ''
-    if len(sys.argv) > 4:
-        prefix = sys.argv[4]
+    if len(sys.argv) > 3:
+        prefix = sys.argv[3]
 
     component['package'] = package
     component['ros2control_path'] = ros2control_path
@@ -196,7 +194,3 @@ if __name__ == "__main__":
 
     with open(xacropath, 'w') as f:
         f.writelines(out)
-
-    urdffile = xacro.process_file(xacropath).toprettyxml(indent='  ')
-    with open(output, 'w') as f:
-        f.write(urdffile)
