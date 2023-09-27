@@ -40,5 +40,11 @@ echo "$component_list" | while IFS= read -r component; do
     # this is to avoid building unncessary packages and installing unecessary deps in the process
     if [ -d "$package" ]; then
         find ./ -mindepth 1 ! -regex "^./$package\(/.*\)?" -delete
+
+        # multiple packages might be on the component list from the same repo
+        # won't be able to clone the repo again, if it alread exists
+        cd $2
+        find ./ -type d -name $package -exec mv -t $2 {} +
+        rm -r $repo_name
     fi
 done
