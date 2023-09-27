@@ -1,0 +1,11 @@
+ament_index_python==1.2.0
+bigtree==0.12.5
+Jinja2==3.1.2
+jsonschema==4.19.1
+launch_ros==0.14.3
+pyecore==0.13.1
+PyYAML==6.0
+PyYAML==6.0.1
+rclpy.egg==info
+Requests==2.31.0
+ruamel.base==1.0.0
