@@ -4,21 +4,32 @@ RUN apt-get update \
     && apt-get install -y git \
         python3-pip \
         graphviz \
-        jq
+        jq \
+        ros-humble-tf-transformations \
+        maven
 
 RUN pip3 install bigtree \
     bigtree[image] \
+    bigtree[pandas] \
     flask \
     flask_socketio \
     flask_sqlalchemy \
     jsonschema \
     pyecore \
     requests \
-    ruamel.yaml
+    ruamel.yaml \
+    transforms3d
+
+RUN mkdir /ls \
+    && cd /ls \
+    && git clone --single-branch --branch main https://github.com/ipa320/kinematics-model.git
+
+WORKDIR /ls/kinematics-model/de.fraunhofer.ipa.kinematics.xtext.parent
+RUN mvn clean install -U -DskipTests
 
 RUN mkdir /app \
     && cd /app \
-    && git clone --single-branch --branch init https://github.com/ipa-hsd/kinematic_components_web_app
+    && git clone --single-branch --branch main https://github.com/ipa-hsd/kinematic_components_web_app
 
 RUN mkdir -p /app/kinematic_components_web_app/static/moveit2_ws/src
 WORKDIR /app/kinematic_components_web_app/static/moveit2_ws/src

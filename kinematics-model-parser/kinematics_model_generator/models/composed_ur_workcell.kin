@@ -3,10 +3,10 @@ component:
   version: '1.0'
   gitRepo:
     distro: "humble"
-    repo: ""
-    branch: ""
+    repo: "https://gitlab.cc-asp.fraunhofer.de/ipa326/demonstrator/ur5e_cell_description.git"
+    branch: "main"
     package: "composed_ur_workcell_description"
-    version: ""
+    version: "4cf1a4e8cfcb6f18c1fdaf0b7fa0f0288739eeb4"
   component:
   - name: "robot"
     type: "ur5e"
