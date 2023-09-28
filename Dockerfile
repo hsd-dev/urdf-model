@@ -20,6 +20,12 @@ RUN pip3 install bigtree \
     ruamel.yaml \
     transforms3d
 
+RUN mkdir /ls \
+    && cd /ls \
+    && git clone --single-branch --branch main https://github.com/ipa320/kinematics-model.git
+
+WORKDIR /ls/kinematics-model/de.fraunhofer.ipa.kinematics.xtext.parent
+RUN mvn clean install -U -DskipTests
 
 RUN mkdir /app \
     && cd /app \
