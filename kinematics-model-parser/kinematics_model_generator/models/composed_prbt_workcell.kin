@@ -3,10 +3,10 @@ component:
   version: '1.0'
   gitRepo:
     distro: "humble"
-    repo: ""
-    branch: ""
+    repo: "https://gitlab.cc-asp.fraunhofer.de/ipa326/demonstrator/prbt_cell_dscription.git"
+    branch: "main"
     package: "composed_prbt_workcell_description"
-    version: ""
+    version: "e8a398bed72604d05169de4ec4579ef9e5ace73d"
   component:
   - name: "robot"
     type: "prbt"
