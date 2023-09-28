@@ -23,7 +23,7 @@ RUN pip3 install bigtree \
 
 RUN mkdir /app \
     && cd /app \
-    && git clone --single-branch --branch init https://github.com/ipa-hsd/kinematic_components_web_app
+    && git clone --single-branch --branch main https://github.com/ipa-hsd/kinematic_components_web_app
 
 RUN mkdir -p /app/kinematic_components_web_app/static/moveit2_ws/src
 WORKDIR /app/kinematic_components_web_app/static/moveit2_ws/src
