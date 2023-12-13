@@ -6,7 +6,7 @@ Use docker container to simplify setting up the toolchain:
 ```
 git clone git@github.com:ipa-hsd/urdf-model.git
 cd urdf-model
-docker build  -t urdf-toolchain
+docker build  -t urdf-toolchain .
 ```
 
 ## Usage
