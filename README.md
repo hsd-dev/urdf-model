@@ -15,3 +15,7 @@ Start the docker container which starts the kinematic language server and the ki
 ```
 . ./kinematics-model-parser/scripts/start_docker.sh urdf-toolchain:latest urdf-toolchain
 ```
+Now the web-based kinematic component database will be accesible in the browser: 
+```
+http://127.0.0.1:5500/
+```
